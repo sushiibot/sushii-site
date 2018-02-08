@@ -1,0 +1,22 @@
+.bd-anchor-title {
+  padding-top: 1.5rem;
+  position: relative;
+}
+
+@media screen and (max-width: 1215px) {
+  .bd-anchor-title {
+    padding-left: 2rem;
+  }
+}
+
+.bd-anchor-link {
+  position: absolute;
+  right: calc(100% + 1rem);
+}
+
+@media screen and (max-width: 1215px) {
+  .bd-anchor-link {
+    left: 0;
+    right: auto;
+  }
+}
