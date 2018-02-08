@@ -4,7 +4,7 @@ import DocsMenu from '../components/DocsMenu'
 
 const DocsPage = () => (
     <div>
-        <div className="container" style={{ 'margin-top': '100px' }}>
+        <div className="container" style={{ marginTop: '100px' }}>
             <h1 className="title">
                 Commands
             </h1>

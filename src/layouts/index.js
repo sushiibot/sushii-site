@@ -4,9 +4,11 @@ import Helmet from 'react-helmet'
 
 import Navbar from '../components/Navbar'
 import fontawesome from '@fortawesome/fontawesome'
-import brands from '@fortawesome/fontawesome-free-brands'
+import { faPatreon } from '@fortawesome/fontawesome-free-brands'
+import { faHeart } from '@fortawesome/fontawesome-free-regular'
+import { faChartBar } from '@fortawesome/fontawesome-free-solid'
 
-fontawesome.library.add(brands)
+fontawesome.library.add(faPatreon, faHeart, faChartBar)
 
 import './index.scss'
 import './style.css'

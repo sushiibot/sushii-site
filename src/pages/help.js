@@ -4,7 +4,7 @@ import HelpMenu from '../components/HelpMenu'
 
 const DocsPage = () => (
     <div>
-        <div className="container" style={{'margin-top': '100px'}}>
+        <div className="container" style={{marginTop: '100px'}}>
             <h1 className="title">
                 Help
             </h1>
@@ -44,10 +44,10 @@ const DocsPage = () => (
                             <h1>Activity</h1>
                             <p>
                                 Similar to ranking, your activity is updated at a maximum of once per minute.  
-                                When you sent a message, a counter is incremented for the respective hour.  
+                                When you send a message, a counter is incremented for the respective hour.  
                                 The number displayed on the side of the graph designates the maximum "active minutes" within the 24 hour period.
-                                These values are never reset, and consist of all time activity since the bot joined the server.
-                                Please allow some time allow it to increase the sample size and produce a more accurate result.
+                                These values are never reset and consist of all time activity since the bot joined the server.
+                                Please allow the bot some time to produce a more accurate result.
                             </p>
                             <blockquote className="blockquote">
                                 <b>Example:</b> If you have sent messages consisting of 200 minutes total between 2:00-3:00, your graph will display 200 at that point in time.
