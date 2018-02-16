@@ -10,25 +10,22 @@ import { faChartBar } from '@fortawesome/fontawesome-free-solid'
 
 fontawesome.library.add(faPatreon, faHeart, faChartBar)
 
-import './index.scss'
-import './style.css'
+import '../styles/index.scss'
+import '../styles/style.scss'
 
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet
-      title="somi Bot"
+      title="sushii"
       meta={[
         { name: 'description', content: 'A discord bot.' },
-        { name: 'keywords', content: 'somi, discord, rust' },
+        { name: 'keywords', content: 'sushii, discord, rust' },
       ]}
     />
     <Navbar />
-    {children()}
+    { children }
   </div>
 )
 
-TemplateWrapper.propTypes = {
-  children: PropTypes.func,
-}
 
 export default TemplateWrapper

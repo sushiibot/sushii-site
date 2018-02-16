@@ -1,9 +1,10 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import Link from 'next/link'
+import Layout from '../layouts/'
 import HelpMenu from '../components/HelpMenu'
 
 const DocsPage = () => (
-    <div>
+    <Layout>
         <div className="container" style={{marginTop: '100px'}}>
             <h1 className="title">
                 Help
@@ -35,11 +36,14 @@ const DocsPage = () => (
                                 More specifically, the intervals are day of the year (1 - 365/366), 
                                 ISO 8601 week-numbering week of the year (1- 52/53, starting Monday), 
                                 and month within the year (1 - 12).
-                                Ranks reset in it's respective category when these values change.
+                                Ranks reset in it's respective category when these values change.  
+                                All times are in UTC.
                             </p>
                             <h1>Levels</h1>
                             <p>
-                                Levels are calculated with the function <code>XP required = 50 * level.pow(2) - (50 * level)</code>
+                                Levels are calculated with the function <code>XP required = 50 * level.pow(2) - (50 * level)</code>.
+                                Using the levels command displays the top users in each category.  
+                                The all time category shows each users's rank while the other periodic categories display the rank change within each timeframe.
                             </p>
                             <h1>Activity</h1>
                             <p>
@@ -50,7 +54,7 @@ const DocsPage = () => (
                                 Please allow the bot some time to produce a more accurate result.
                             </p>
                             <blockquote className="blockquote">
-                                <b>Example:</b> If you have sent messages consisting of 200 minutes total between 2:00-3:00, your graph will display 200 at that point in time.
+                                <b>Example:</b> If you have sent messages across a total of 200 minutes between 2:00-3:00, your graph will display 200 at that point in time.
                             </blockquote>
                         </div>
                     </section>
@@ -58,7 +62,7 @@ const DocsPage = () => (
                
             </div>
         </div>
-    </div>
+    </Layout>
 )
 
 export default DocsPage

@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import Link from 'next/link'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 const Menu = () => (

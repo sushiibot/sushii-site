@@ -1,9 +1,10 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import Link from 'next/link'
+import Layout from '../layouts/'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 const PatronPage = () => (
-  <div>
+  <Layout>
     <section className="hero is-fullheight">
       <div className="hero-body">
         <div className="container has-text-centered">
@@ -21,7 +22,7 @@ const PatronPage = () => (
         </div>
       </div>
     </section>
-  </div>
+  </Layout>
 )
 
 export default PatronPage
