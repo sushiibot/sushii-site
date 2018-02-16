@@ -2,12 +2,26 @@ import React from 'react'
 import Link from 'next/link'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
+const NavbarLink = ({href, name}) => (
+  <Link href={href}>
+    <a className="navbar-link">{name}</a>
+  </Link>
+)
+
+const NavbarItem = ({href, name}) => (
+  <Link href={href}>
+    <a className="navbar-item">{name}</a>
+  </Link>
+)
+
 const Navbar = () => (
   <nav className="navbar is-fixed-top is-transparent">
     <div className="container">
       <div className="navbar-brand">
         <Link href="/">
-          <a className="navbar-item">sushii</a>
+          <a className="navbar-item">
+            <img src="/static/sushii.png" />
+          </a>
         </Link>
         <div className="navbar-burger burger" data-target="navBar">
           <span></span>
@@ -17,69 +31,33 @@ const Navbar = () => (
       </div>
 
       <div id="navBar" className="navbar-menu">
-        <Link href="/about">
-          <a className="navbar-item">About</a>
-        </Link>
+        <NavbarItem href="/about" name="About"/>
         <div className="navbar-start">
           <div className="navbar-item has-dropdown is-hoverable">
-            <Link href="/commands">
-              <a className="navbar-link">Commands</a>
-            </Link>
+            <NavbarLink href="/commands" name="Commands" />
             <div className="navbar-dropdown is-boxed">
-              <Link href="/commands#profile">
-                <a className="navbar-item">Profile</a>
-            </Link>
-              <Link href="/commands#notifications">
-                <a className="navbar-item">Notifications</a>
-            </Link>
-              <Link href="/commands#meta">
-                <a className="navbar-item">Meta</a>
-            </Link>
-              <Link href="/commands#moderation">
-                <a className="navbar-item">Moderation</a>
-            </Link>
-              <Link href="/commands#settings">
-                <a className="navbar-item">Settings</a>
-            </Link>
-              <Link href="/commands#gallery">
-                <a className="navbar-item">Gallery</a>
-            </Link>
-              <Link href="/commands#roles">
-                <a className="navbar-item">Roles</a>
-            </Link>
-              <Link href="/commands#reminders">
-                <a className="navbar-item">Reminders</a>
-            </Link>
-              <Link href="/commands#tags">
-                <a className="navbar-item">Tags</a>
-            </Link>
-              <Link href="/commands#search">
-                <a className="navbar-item">Search</a>
-            </Link>
-              <Link href="/commands#userinfo">
-                <a className="navbar-item">Userinfo</a>
-            </Link>
-              <Link href="/commands#misc">
-                <a className="navbar-item">Misc</a>
-            </Link>
+              <NavbarItem href="/commands#profile" name="Profile" />
+              <NavbarItem href="/commands#notifications" name="Notifications" />
+              <NavbarItem href="/commands#meta" name="Meta" />
+              <NavbarItem href="/commands#moderation" name="Moderation" />
+              <NavbarItem href="/commands#settings" name="Settings" />
+              <NavbarItem href="/commands#gallery" name="Gallery" />
+              <NavbarItem href="/commands#roles" name="Roles" />
+              <NavbarItem href="/commands#reminders" name="Reminders" />
+              <NavbarItem href="/commands#tags" name="Tags" />
+              <NavbarItem href="/commands#search" name="Search" />
+              <NavbarItem href="/commands#userinfo" name="Userinfo" />
+              <NavbarItem href="/commands#misc" name="Misc" />
             </div>
           </div>
           <div className="navbar-item has-dropdown is-hoverable">
-            <Link href="/help">
-              <a className="navbar-link">Help</a>
-            </Link>
+            <NavbarLink href="/help" name="Help" />
             <div className="navbar-dropdown is-boxed">
-              <Link href="/help#levels">
-                <a className="navbar-item">Levels</a>
-              </Link>
-                <Link href="/help#roles">
-                  <a className="navbar-item">Roles</a>
-              </Link>
+              <NavbarItem href="/help#levels" name="Levels" />
+              <NavbarItem href="/help#roles" name="Roles" />
             </div>
           </div>
-          <Link href="/patrons">
-            <a className="navbar-item">Patrons</a>
-          </Link>
+          <NavbarItem href="/patrons" name="Patrons" />
         </div>
 
         <div className="navbar-end">
