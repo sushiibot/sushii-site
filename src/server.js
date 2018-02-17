@@ -3,7 +3,9 @@ const next = require('next')
 const Router = require('koa-router')
 const Body = require('koa-bodyparser')
 const { graphqlKoa } = require('apollo-server-koa')
-const { graphiqlKoa } = ('apollo-server-koa')
+const { graphiqlKoa } = require('apollo-server-koa')
+const schema = require('./schema')
+
 require('dotenv').config()
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -15,6 +17,18 @@ app.prepare()
     .then(() => {
         const server = new Koa()
         const router = new Router()
+
+        server.use(Body())
+
+        router.post('/graphql', graphqlKoa({ schema: schema }));
+        router.get('/graphql', graphqlKoa({ schema: schema }));
+
+        router.get(
+            '/graphiql',
+            graphiqlKoa({
+                endpointURL: '/graphql', // a POST endpoint that GraphiQL will make the actual requests to
+            }),
+        );
 
         router.get('/a', async ctx => {
             await app.render(ctx.req, ctx.res, '/b', ctx.query)
@@ -35,10 +49,10 @@ app.prepare()
             ctx.res.statusCode = 200
             await next()
         })
+        
 
         server.use(router.routes())
         server.use(router.allowedMethods())
-        server.use(Body())
         server.listen(port, (err) => {
             if (err) throw err
             console.log(`> Ready on http://localhost:${port}`)
