@@ -1,17 +1,25 @@
 import React from 'react'
 import Link from 'next/link'
+import { withRouter } from 'next/router'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
-const NavbarLink = ({href, name}) => (
-  <Link href={href}>
-    <a className="navbar-link">{name}</a>
-  </Link>
+const NavbarItemLink = withRouter(({ href, name, router, type }) => {
+  const NavbarType = type == 'link' ? 'navbar-link' : 'navbar-item'
+  const classes = router.pathname === href ? 'is-active ' + NavbarType : NavbarType
+  
+  return (
+    <Link href={href}>
+      <a className={classes}>{name}</a>
+    </Link>
+  )
+})
+
+const NavbarLink = (props) => (
+  <NavbarItemLink {...props} type='link' />
 )
 
-const NavbarItem = ({href, name}) => (
-  <Link href={href}>
-    <a className="navbar-item">{name}</a>
-  </Link>
+const NavbarItem = (props) => (
+  <NavbarItemLink {...props} type='item' />
 )
 
 const Navbar = () => (
