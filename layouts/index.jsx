@@ -13,6 +13,7 @@ fontawesome.library.add(faPatreon, faHeart, faChartBar)
 import '../styles/index.scss'
 import '../styles/style.scss'
 
+
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet
@@ -26,6 +27,10 @@ const TemplateWrapper = ({ children }) => (
     { children }
   </div>
 )
+
+TemplateWrapper.propTypes = {
+  children: PropTypes.node,
+}
 
 
 export default TemplateWrapper
