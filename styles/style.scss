@@ -3,6 +3,8 @@
   position: relative;
 }
 
+// this causes text right above the anchor tag to 
+// be not selectable
 .bd-anchor-title {
   padding-top: 80px;
   margin-top: -80px;

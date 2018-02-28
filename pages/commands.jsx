@@ -10,11 +10,11 @@ const DocsPage = () => (
         Commands
       </h1>
       <div className='columns'>
-        <div className='column is-one-quarter'>
+        <div className='column is-one-fifth'>
           <CommandMenu />
         </div>
         <section className='section'>
-          <article className="message is-info">
+          <article className="message">
             <div className="message-body">
               Required arguments use <code>[brackets]</code>
               <br />
