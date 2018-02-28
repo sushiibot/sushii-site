@@ -12,10 +12,10 @@ const IndexPage = () => (
               sushii
             </h1>
             <p className='subtitle'>
-              a work in progress, written in <a href='https://www.rust-lang.org/' target='_blank' rel='noopener noreferrer'>Rust</a>.
+              A <a href='https://discordapp.com' target='_blank' rel='noopener noreferrer'>Discord</a> bot.
             </p>
             <a className='button is-link' target='_blank' rel='noopener noreferrer' href='https://discordapp.com/oauth2/authorize?&client_id=193163942502072320&scope=bot'>
-              Add to Discord
+              Add me to Discord!
             </a>
             <br/><br/><br/>
             <div className='columns is-mobile is-centered'>

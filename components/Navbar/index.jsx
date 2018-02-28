@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import commands from '../../assets/commands'
 
 const NavbarItemLink = withRouter(({ href, name, router, type }) => {
   const NavbarType = type == 'link' ? 'navbar-link' : 'navbar-item'
@@ -44,18 +45,11 @@ const Navbar = () => (
           <div className='navbar-item has-dropdown is-hoverable'>
             <NavbarLink href='/commands' name='Commands' />
             <div className='navbar-dropdown is-boxed'>
-              <NavbarItem href='/commands#profile' name='Profile' />
-              <NavbarItem href='/commands#notifications' name='Notifications' />
-              <NavbarItem href='/commands#meta' name='Meta' />
-              <NavbarItem href='/commands#moderation' name='Moderation' />
-              <NavbarItem href='/commands#settings' name='Settings' />
-              <NavbarItem href='/commands#gallery' name='Gallery' />
-              <NavbarItem href='/commands#roles' name='Roles' />
-              <NavbarItem href='/commands#reminders' name='Reminders' />
-              <NavbarItem href='/commands#tags' name='Tags' />
-              <NavbarItem href='/commands#search' name='Search' />
-              <NavbarItem href='/commands#userinfo' name='Userinfo' />
-              <NavbarItem href='/commands#misc' name='Misc' />
+              {
+                Object.keys(commands).map((category, i) => {
+                  return <NavbarItem href={'/commands#' + category.toLowerCase()} name={category} key={i} />
+                })
+              }
             </div>
           </div>
           <div className='navbar-item has-dropdown is-hoverable'>

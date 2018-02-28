@@ -3,6 +3,11 @@
   position: relative;
 }
 
+.bd-anchor-title {
+  padding-top: 80px;
+  margin-top: -80px;
+}
+
 @media screen and (max-width: 1215px) {
   .bd-anchor-title {
     padding-left: 2rem;
