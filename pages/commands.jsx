@@ -36,8 +36,8 @@ const DocsPage = () => (
                     commands[category].map((element, i) => {
                       return (
                         <div key={i}>
-                        <CommandItem data={element} />
-                      </div>
+                          <CommandItem data={element} />
+                        </div>
                       )
                     })
                   }

@@ -56,8 +56,8 @@ export class CommandItem extends React.Component {
     if (this.props.data.permissions &&
       this.props.data.optional) {
       permissions = <span className="tag is-warning">
-          {this.props.data.permissions}
-        </span>
+        {this.props.data.permissions}
+      </span>
     } else if (
       this.props.data.permissions &&
       !this.props.data.optional
@@ -71,10 +71,10 @@ export class CommandItem extends React.Component {
     let aliases = ''
     if (this.props.data.aliases) {
       aliases = <div>
-          <span className="has-text-grey">
-            Aliases: {this.props.data.aliases.join(', ')}
-          </span> <br />
-        </div>
+        <span className="has-text-grey">
+          Aliases: {this.props.data.aliases.join(', ')}
+        </span> <br />
+      </div>
     }
 
     // command usage
