@@ -18,7 +18,7 @@ const IndexPage = () => (
               Add me to Discord!
             </a>
             <br/><br/><br/>
-            <div className='columns is-mobile is-centered'>
+            <div className='columns is-centered'>
               <div className='column is-narrow'>
                 <div className='bd-notification is-info'>
                   <div className='notification'>
