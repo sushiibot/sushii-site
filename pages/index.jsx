@@ -1,6 +1,5 @@
 import React from 'react'
 import Layout from '../layouts/'
-import Link from 'next/link'
 
 const IndexPage = () => (
   <Layout>
