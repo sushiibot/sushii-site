@@ -65,12 +65,12 @@ const commands = {
     {
       name: 'weather',
       desc: 'Gets the weather of a location',
-      usage: '(save) [location]',
+      usage: '(save) (location)',
     },
     {
       name: 'fm',
       desc: 'Gets the last played track on last.fm',
-      usage: '(set) [username]',
+      usage: '(set) (username)',
     },
     {
       name: 'crypto',
@@ -160,7 +160,7 @@ const commands = {
     },
     {
       name: 'patreon',
-      desc: 'Gets the patreon url. :)',
+      desc: 'Gets the patreon url.',
     },
   ],
   Moderation: [
@@ -171,7 +171,7 @@ const commands = {
     {
       name: 'reason',
       desc: 'Edits the reason for moderation action cases.',
-      usage: '[case #] [reason]',
+      usage: '[case #](-case #) [reason]',
       permissions: 'BAN_MEMBERS'
     },
     {
