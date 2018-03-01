@@ -113,7 +113,7 @@ class Navbar extends React.Component {
                       </span>
                       <span>
                         Patreon
-                  </span>
+                      </span>
                     </a>
                   </p>
                 </div>
