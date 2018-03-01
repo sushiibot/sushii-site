@@ -23,6 +23,11 @@ app.prepare()
     router.post('/graphql', graphqlKoa({ schema: schema }))
     router.get('/graphql', graphqlKoa({ schema: schema }))
 
+    // invite url
+    router.get('/invite', async ctx => {
+      ctx.redirect(process.env.INVITE_URL)
+    })
+
     router.get(
       '/graphiql',
       graphiqlKoa({

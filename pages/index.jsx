@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from '../layouts/'
+import Link from 'next/link'
 
 const IndexPage = () => (
   <Layout>
@@ -14,7 +15,7 @@ const IndexPage = () => (
             <p className='subtitle'>
               A <a href='https://discordapp.com' target='_blank' rel='noopener noreferrer'>Discord</a> bot.
             </p>
-            <a className='button is-link' target='_blank' rel='noopener noreferrer' href='https://discordapp.com/oauth2/authorize?&client_id=193163942502072320&scope=bot'>
+            <a className='button is-link' target='_blank' rel='noopener noreferrer' href='/invite'>
               Add me to Discord!
             </a>
             <br/><br/><br/>
