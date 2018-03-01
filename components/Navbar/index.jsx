@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
@@ -23,64 +24,106 @@ const NavbarItem = (props) => (
   <NavbarItemLink {...props} type='item' />
 )
 
-const Navbar = () => (
-  <nav className='navbar is-fixed-top is-transparent'>
-    <div className='container'>
-      <div className='navbar-brand'>
-        <Link href='/'>
-          <a className='navbar-item'>
-            <img src='/static/sushii.png' />
-          </a>
-        </Link>
-        <div className='navbar-burger burger' data-target='navBar'>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+class NavBarBurger extends React.Component {
+  static propTypes = {
+    hamburgerIsActive: PropTypes.bool.isRequired,
+    handleClick: PropTypes.func.isRequired
+  }
 
-      <div id='navBar' className='navbar-menu'>
-        <NavbarItem href='/about' name='About'/>
-        <div className='navbar-start'>
-          <div className='navbar-item has-dropdown is-hoverable'>
-            <NavbarLink href='/commands' name='Commands' />
-            <div className='navbar-dropdown is-boxed'>
-              {
-                Object.keys(commands).map((category, i) => {
-                  return <NavbarItem href={'/commands#' + category.toLowerCase()} name={category} key={i} />
-                })
-              }
-            </div>
-          </div>
-          <div className='navbar-item has-dropdown is-hoverable'>
-            <NavbarLink href='/help' name='Help' />
-            <div className='navbar-dropdown is-boxed'>
-              <NavbarItem href='/help#levels' name='Levels' />
-              <NavbarItem href='/help#roles' name='Roles' />
-            </div>
-          </div>
-          <NavbarItem href='/patrons' name='Patrons' />
-        </div>
+  render() {
+    let classes = 'navbar-burger burger'
 
-        <div className='navbar-end'>
-          <div className='navbar-item'>
-            <div className='field is-grouped'>
-              <p className='control'>
-                <a className='is-primary button' target='_blank' rel='noopener noreferrer' href='https://www.patreon.com/tzuwy'>
-                  <span className='icon'>
-                    <FontAwesomeIcon icon={['fab', 'patreon']} />
+    if (this.props.hamburgerIsActive) {
+      classes += ' is-active'
+    }
+
+    return (
+      <div onClick={this.props.handleClick} className={classes} data-target='navBar'>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    )
+  }
+}
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { hamburgerIsActive: false }
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      hamburgerIsActive: !prevState.hamburgerIsActive
+    }))
+  }
+
+  render() {
+    let navBarClasses = 'navbar-menu'
+
+    if (this.state.hamburgerIsActive) {
+      navBarClasses += ' is-active'
+    }
+
+    return (
+      <nav className='navbar is-fixed-top is-transparent'>
+        <div className='container'>
+          <div className='navbar-brand'>
+            <Link href='/'>
+              <a className='navbar-item'>
+                <img src='/static/sushii.png' />
+              </a>
+            </Link>
+            <NavBarBurger handleClick={this.handleClick} hamburgerIsActive={this.state.hamburgerIsActive}/>
+          </div>
+
+          <div id='navBar' className={navBarClasses}>
+            <NavbarItem href='/about' name='About' />
+            <div className='navbar-start'>
+              <div className='navbar-item has-dropdown is-hoverable'>
+                <NavbarLink href='/commands' name='Commands' />
+                <div className='navbar-dropdown is-boxed'>
+                  {
+                    Object.keys(commands).map((category, i) => {
+                      return <NavbarItem href={'/commands#' + category.toLowerCase()} name={category} key={i} />
+                    })
+                  }
+                </div>
+              </div>
+              <div className='navbar-item has-dropdown is-hoverable'>
+                <NavbarLink href='/help' name='Help' />
+                <div className='navbar-dropdown is-boxed'>
+                  <NavbarItem href='/help#levels' name='Levels' />
+                  <NavbarItem href='/help#roles' name='Roles' />
+                </div>
+              </div>
+              <NavbarItem href='/patrons' name='Patrons' />
+            </div>
+
+            <div className='navbar-end'>
+              <div className='navbar-item'>
+                <div className='field is-grouped'>
+                  <p className='control'>
+                    <a className='is-danger button' target='_blank' rel='noopener noreferrer' href='https://www.patreon.com/tzuwy'>
+                      <span className='icon'>
+                        <FontAwesomeIcon icon={['fab', 'patreon']} />
+                      </span>
+                      <span>
+                        Patreon
                   </span>
-                  <span>
-                    Patreon
-                  </span>
-                </a>
-              </p>
+                    </a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </nav>
-)
+      </nav>
+    )
+  }
+}
 
 export default Navbar
