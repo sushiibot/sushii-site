@@ -16,15 +16,15 @@ const DocsPage = () => (
         <section className='section'>
           <article className="message">
             <div className="message-body">
-              Required arguments use <code>[brackets]</code>
+              Required arguments are in <code>[brackets]</code>
               <br />
-              Optional arguments use <code>(parentheses)</code>
+              Optional arguments are in <code>(parentheses)</code>
               <br/>
               Some commands have a <span className="tag is-danger">
                 REQUIRED_PERMISSION
               </span> or <span className="tag is-warning">
                 OPTIONAL_PERMISSION
-              </span> for additional functionality.
+              </span> for the user invoking the command to use additional functionality.
             </div>
           </article>
           {
