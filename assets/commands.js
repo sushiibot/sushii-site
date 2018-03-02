@@ -222,13 +222,14 @@ const commands = {
     },
     {
       name: 'leavemsg',
-      desc: 'Gets the guild leave message or sets one if given.',
+      desc: 'Gets the guild leave message or sets one if given. \
+      You can use the same placeholders as listed above.',
       usage: '(message)',
       permissions: 'MANAGE_GUILD'
     },
     {
       name: 'modlog',
-      desc: 'Sets the moderation log channel.',
+      desc: 'Sets the moderation log channel.  Bans and mutes will be sent here.',
       usage: '[#channel or ID]',
       permissions: 'MANAGE_GUILD'
     },
@@ -240,7 +241,7 @@ const commands = {
     },
     {
       name: 'memberlog',
-      desc: 'Sets the member log channel.',
+      desc: 'Sets the member log channel.   Member leave and join logs will be sent here.',
       usage: '[#channel or ID]',
       permissions: 'MANAGE_GUILD'
     },
@@ -252,7 +253,8 @@ const commands = {
     },
     {
       name: 'inviteguard',
-      desc: 'Enables or disables the invite guard.',
+      desc: 'Enables or disables the invite guard.  This auto deletes Discord invite links.  \
+      Users who can use this command also bypass the invite guard.',
       usage: '[enable / disable]',
       permissions: 'MANAGE_GUILD'
     },
