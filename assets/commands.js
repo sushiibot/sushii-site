@@ -215,7 +215,8 @@ const commands = {
     },
     {
       name: 'joinmsg',
-      desc: 'Gets the guild join message or sets one if given.',
+      desc: 'Gets the guild join message or sets one if given.  \
+      You can use the placeholders <mention>, <username>, <server> to get the corresponding values.',
       usage: '(message)',
       permissions: 'MANAGE_GUILD'
     },

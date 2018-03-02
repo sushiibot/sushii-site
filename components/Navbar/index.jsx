@@ -47,6 +47,23 @@ class NavBarBurger extends React.Component {
   }
 }
 
+const NavBarInvite = withRouter(({router}) => {
+  const isVisible = router.pathname.length > 1
+  let style = {}
+
+  if (!isVisible) {
+    style = { display: 'none' }
+  }
+
+  return (
+    <p className="control">
+      <a className='button is-link' target='_blank' rel='noopener noreferrer' href='/invite' style={style}>
+        Add to Discord
+      </a>
+    </p>
+  )
+})
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
@@ -106,6 +123,7 @@ class Navbar extends React.Component {
             <div className='navbar-end'>
               <div className='navbar-item'>
                 <div className='field is-grouped'>
+                  <NavBarInvite />
                   <p className='control'>
                     <a className='is-danger button' target='_blank' rel='noopener noreferrer' href='https://www.patreon.com/tzuwy'>
                       <span className='icon'>
