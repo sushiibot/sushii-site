@@ -24,7 +24,7 @@ const IndexPage = () => (
                   <div className='notification'>
                     <b>Note:</b> This is currently an <b>in development</b> bot and will not be the same as the stable release.
                     <br /> By adding this bot you understand it may have features may be added, removed, changed, or break at any given moment.
-                    <br /> There are intermittent bugs and deadlocks that may occur.
+                    <br /> There are intermittent bugs and deadlocks that may occur.  Uptime is <b>not guaranteed</b>.
                     <br /> <br />
                     Just like the bot, this site is also really incomplete and in progress.
                     <br /> If you have any suggestions feel free to message me on discord. :]
