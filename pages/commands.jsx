@@ -16,6 +16,8 @@ const DocsPage = () => (
         <section className='section'>
           <article className="message">
             <div className="message-body">
+              The default prefix for sushii is <code>-</code> You can also @mention the bot for the prefix.
+              <br/>
               Required arguments are in <code>[brackets]</code>
               <br />
               Optional arguments are in <code>(parentheses)</code>
