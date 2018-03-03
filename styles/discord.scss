@@ -888,6 +888,13 @@ $discord-border-radius: 10px;
   margin-bottom: 5px
 }
 
+.embed .embed-footer .footer-bullet {
+  display: inline-block;
+  margin: 0 4px;
+  color: #4f545c;
+  font-weight: 700;
+}
+
 .embed .embed-author {
   display: -webkit-box;
   display: -ms-flexbox;

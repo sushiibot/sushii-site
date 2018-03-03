@@ -168,7 +168,9 @@ class EmbedFooter extends React.Component {
     let time = Moment(timestamp !== undefined ? timestamp : null)
     time = time.isValid() ? time.format('ddd MMM Do, YYYY [at] h:mm A') : null
 
-    const footerText = [text, time].filter(Boolean).join(' | ')
+    const footerText = [text, time].filter(Boolean).reduce((accu, elem, i) => {
+      return accu === null ? [elem] : [...accu, <span className='footer-bullet' key={i}> • </span>, elem]
+    })
     const footerIcon = text && icon_url ? (
       <img src={icon_url} className='embed-footer-icon' role='presentation' width='20' height='20' />
     ) : null
