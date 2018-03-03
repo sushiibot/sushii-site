@@ -47,21 +47,37 @@ class MessageBody extends React.Component {
   
 }
 
-const CozyMessageHeader = ({ username, isBot }) => {
-  return (
-    <h2 style={{ lineHeight: '16px' }}>
-      <span className='username-wrapper v-btm'>
-        <strong className='user-name'>{username}</strong>
-        {isBot && <span className='bot-tag'>BOT</span>}
-      </span>
-      <span className='highlight-separator'> - </span>
-      <MessageTimestamp />
-    </h2>
-  )
+class CozyMessageHeader extends React.Component {
+  static propTypes = {
+    username: PropTypes.string.isRequired,
+    isBot: PropTypes.bool.isRequired,
+  }
+
+  render() {
+    const { username, isBot } = this.props
+
+    return (
+      <h2 style={{ lineHeight: '16px' }}>
+        <span className='username-wrapper v-btm'>
+          <strong className='user-name'>{username}</strong>
+          {isBot && <span className='bot-tag'>BOT</span>}
+        </span>
+        <span className='highlight-separator'> - </span>
+        <MessageTimestamp />
+      </h2>
+    )
+  }
 }
 
-const Avatar = ({ url }) => {
-  return <div className='avatar-large animate' style={{ backgroundImage: `url('${url}')` }} />
+
+class Avatar extends React.Component {
+  static propTypes = {
+    url: PropTypes.string.isRequired,
+  }
+
+  render() {
+    return <div className='avatar-large animate' style={{ backgroundImage: `url('${this.props.url}')` }} />
+  }
 }
 
 class DiscordViewWrapper extends React.Component {
@@ -97,17 +113,22 @@ class DiscordMessage extends React.Component {
     msg: PropTypes.object.isRequired,
     username: PropTypes.string.isRequired,
     avatar: PropTypes.string,
+    isBot: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    avatar: 'https://cdn.discordapp.com/embed/avatars/0.png'
   }
 
   render() {
-    let { msg, username, avatar } = this.props
+    let { msg, username, avatar, isBot } = this.props
 
     return (
       <div className='message-group hide-overflow'>
         <Avatar url={avatar} />
         <div className='comment'>
           <div className='discord-message first'>
-            <CozyMessageHeader username={username} isBot={msg.isBot} />
+            <CozyMessageHeader username={username} isBot={isBot} />
             <div className='message-text'>
               <MessageBody
                 content={msg.content}
@@ -120,10 +141,6 @@ class DiscordMessage extends React.Component {
       </div>
     )
   }
-}
-
-DiscordMessage.defaultProps = {
-  avatar: 'https://cdn.discordapp.com/embed/avatars/0.png'
 }
 
 class DiscordView extends React.Component {
@@ -141,7 +158,7 @@ class DiscordView extends React.Component {
       <div className='w-100 h-100 br2 flex flex-column white overflow-hidden'>
         <DiscordViewWrapper >
           <DiscordMessage msg={messages.command} username={username} />
-          <DiscordMessage msg={messages.response} username={botUsername} avatar={botAvatarUrl} />
+          <DiscordMessage msg={messages.response} username={botUsername} avatar={botAvatarUrl} isBot={true} />
         </DiscordViewWrapper>
       </div>
     )

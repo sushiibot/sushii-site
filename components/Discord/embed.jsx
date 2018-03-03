@@ -1,24 +1,38 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Moment from 'moment'
 import { parseAllowLinks, parseEmbedTitle } from './markdown'
 import { extractRGB } from './color'
 
 
-const Link = ({ children, ...props}) => {
-  return <a target='_blank' rel='noreferrer' {...props}>{children}</a>
+class Link extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+  }
+
+  render() {
+    const { children, ...props } = this.props
+    return <a target='_blank' rel='noreferrer' {...props}>{children}</a>
+  }
 }
 
 
-const EmbedColorPill = ({ color }) => {
-  let computed
-
-  if (color) {
-    const c = extractRGB(color)
-    computed = `rgba(${c.r},${c.g},${c.b},1)`
+class EmbedColorPill extends React.Component{
+  static propTypes = {
+    color: PropTypes.number,
   }
 
-  const style = { backgroundColor: computed !== undefined ? computed : '' }
-  return <div className='embed-color-pill' style={style} />
+  render() {
+    let computed
+
+    if (this.props.color) {
+      const c = extractRGB(this.props.color)
+      computed = `rgba(${c.r},${c.g},${c.b},1)`
+    }
+
+    const style = { backgroundColor: computed !== undefined ? computed : '' }
+    return <div className='embed-color-pill' style={style} />
+  }
 }
 
 const EmbedTitle = ({ title, url }) => {
@@ -34,119 +48,190 @@ const EmbedTitle = ({ title, url }) => {
   return computed
 }
 
-const EmbedDescription = ({ content }) => {
-  if (!content) {
-    return null
+class EmbedDescription extends React.Component {
+  static propTypes = {
+    content: PropTypes.object.isRequired,
   }
 
-  return <div className='embed-description markup'>{parseAllowLinks(content)}</div>
-}
-
-const EmbedAuthor = ({ name, url, icon_url }) => {
-  if (!name) {
-    return null
-  }
-
-  let authorName
-  if (name) {
-    authorName = <span className='embed-author-name'>{name}</span>
-    if (url) {
-      authorName = <Link href={url} className='embed-author-name'>{name}</Link>
+  render() {
+    if (!this.props.content) {
+      return null
     }
+
+    return <div className='embed-description markup'>{parseAllowLinks(this.props.content)}</div>
   }
-
-  const authorIcon = icon_url ? (<img src={icon_url} role='presentation' className='embed-author-icon' />) : null
-
-  return <div className='embed-author'>{authorIcon}{authorName}</div>
 }
 
-const EmbedField = ({ name, value, inline }) => {
-  if (!name && !value) {
-    return null
+class EmbedAuthor extends React.Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    icon_url: PropTypes.string.isRequired,
   }
 
-  const cls = 'embed-field' + (inline ? ' embed-field-inline' : '')
+  render() {
+    const { name, url, icon_url } = this.props
 
-  const fieldName = name ? (<div className='embed-field-name'>{parseEmbedTitle(name)}</div>) : null
-  const fieldValue = value ? (<div className='embed-field-value markup'>{parseAllowLinks(value)}</div>) : null
+    if (!name) {
+      return null
+    }
 
-  return <div className={cls}>{fieldName}{fieldValue}</div>
+    let authorName
+    if (name) {
+      authorName = <span className='embed-author-name'>{name}</span>
+      if (url) {
+        authorName = <Link href={url} className='embed-author-name'>{name}</Link>
+      }
+    }
+
+    const authorIcon = icon_url ? (<img src={icon_url} role='presentation' className='embed-author-icon' />) : null
+
+    return <div className='embed-author'>{authorIcon}{authorName}</div>
+  }
 }
 
-const EmbedThumbnail = ({ url }) => {
-  if (!url) {
-    return null
+class EmbedField extends React.Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    inline: PropTypes.bool,
   }
 
-  return (
-    <img
-      src={url}
-      role='presentation'
-      className='embed-rich-thumb'
-      style={{ maxWidth: 80, maxHeight: 80 }}
-    />
-  )
+  render() {
+    const { name, value, inline } = this.props
+
+    if (!name && !value) {
+      return null
+    }
+
+    const cls = 'embed-field' + (inline ? ' embed-field-inline' : '')
+
+    const fieldName = name ? (<div className='embed-field-name'>{parseEmbedTitle(name)}</div>) : null
+    const fieldValue = value ? (<div className='embed-field-value markup'>{parseAllowLinks(value)}</div>) : null
+
+    return <div className={cls}>{fieldName}{fieldValue}</div>
+  }
 }
 
-const EmbedImage = ({ url }) => {
-  if (!url) {
-    return null
+class EmbedThumbnail extends React.Component {
+  static propTypes = {
+    url: PropTypes.string.isRequired,
   }
 
-  // NOTE: for some reason it's a link in the original DOM
-  // not sure if this breaks the styling, probably does
-  return <a className='embed-thumbnail embed-thumbnail-rich'><img className='image' role='presentation' src={url} /></a>
+  render() {
+    if (!this.props.url) {
+      return null
+    }
+
+    return (
+      <img
+        src={this.props.url}
+        role='presentation'
+        className='embed-rich-thumb'
+        style={{ maxWidth: 80, maxHeight: 80 }}
+      />
+    )
+  }
 }
 
-const EmbedFooter = ({ timestamp, text, icon_url }) => {
-  if (!text && !timestamp) {
-    return null
+class EmbedImage extends React.Component {
+  static propTypes = {
+    url: PropTypes.string.isRequired,
   }
 
-  // pass null, since undefined will make moment(...) return the current date/time
-  let time = Moment(timestamp !== undefined ? timestamp : null)
-  time = time.isValid() ? time.format('ddd MMM Do, YYYY [at] h:mm A') : null
+  render() {
+    if (!this.props.url) {
+      return null
+    }
 
-  const footerText = [text, time].filter(Boolean).join(' | ')
-  const footerIcon = text && icon_url ? (
-    <img src={icon_url} className='embed-footer-icon' role='presentation' width='20' height='20' />
-  ) : null
-
-  return <div>{footerIcon}<span className='embed-footer'>{footerText}</span></div>
+    // NOTE: for some reason it's a link in the original DOM
+    // not sure if this breaks the styling, probably does
+    return <a className='embed-thumbnail embed-thumbnail-rich'><img className='image' role='presentation' src={this.props.url} /></a>
+  }
 }
 
-const EmbedFields = ({ fields }) => {
-  if (!fields) {
-    return null
+class EmbedFooter extends React.Component {
+  static propTypes = {
+    timestamp: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    icon_url: PropTypes.string.isRequired,
   }
 
-  return <div className='embed-fields'>{fields.map((f, i) => <EmbedField key={i} {...f} />)}</div>
+  render() {
+    const { timestamp, text, icon_url } = this.props
+
+    if (!text && !timestamp) {
+      return null
+    }
+
+    // pass null, since undefined will make moment(...) return the current date/time
+    let time = Moment(timestamp !== undefined ? timestamp : null)
+    time = time.isValid() ? time.format('ddd MMM Do, YYYY [at] h:mm A') : null
+
+    const footerText = [text, time].filter(Boolean).join(' | ')
+    const footerIcon = text && icon_url ? (
+      <img src={icon_url} className='embed-footer-icon' role='presentation' width='20' height='20' />
+    ) : null
+
+    return <div>{footerIcon}<span className='embed-footer'>{footerText}</span></div>
+  }
 }
 
-const Embed = ({
-  color, author, title, url, description, fields, thumbnail, image, timestamp, footer
-}) => {
-  return (
-    <div className='accessory'>
-      <div className='embed-wrapper'>
-        <EmbedColorPill color={color} />
-        <div className='embed embed-rich'>
-          <div className='embed-content'>
-            <div className='embed-content-inner'>
-              <EmbedAuthor {...author} />
-              <EmbedTitle title={title} url={url} />
-              <EmbedDescription content={description} />
-              <EmbedFields fields={fields} />
+class EmbedFields extends React.Component {
+  static propTypes = {
+    fields: PropTypes.object.isRequired,
+  }
+
+  render() {
+    if (!this.props.fields) {
+      return null
+    }
+
+    return <div className='embed-fields'>{this.props.fields.map((f, i) => <EmbedField key={i} {...f} />)}</div>
+  } 
+}
+
+class Embed extends React.Component {
+  static propTypes = {
+    color: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    fields: PropTypes.object.isRequired,
+    thumbnail: PropTypes.object.isRequired,
+    image: PropTypes.object.isRequired,
+    timestamp: PropTypes.string.isRequired,
+    footer: PropTypes.object.isRequired,
+  }
+  
+  render() {
+    const { color, author, title, url, description, fields, thumbnail, image, timestamp, footer } = this.props
+
+    return (
+      <div className='accessory'>
+        <div className='embed-wrapper'>
+          <EmbedColorPill color={color} />
+          <div className='embed embed-rich'>
+            <div className='embed-content'>
+              <div className='embed-content-inner'>
+                <EmbedAuthor {...author} />
+                <EmbedTitle title={title} url={url} />
+                <EmbedDescription content={description} />
+                <EmbedFields fields={fields} />
+              </div>
+              <EmbedThumbnail {...thumbnail} />
             </div>
-            <EmbedThumbnail {...thumbnail} />
+            <EmbedImage {...image} />
+            <EmbedFooter timestamp={timestamp} {...footer} />
           </div>
-          <EmbedImage {...image} />
-          <EmbedFooter timestamp={timestamp} {...footer} />
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
+
+
 
 
 export default Embed

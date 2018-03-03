@@ -439,6 +439,7 @@ $discord-border-radius: 10px;
 
 .chat>.title-wrap>.topic a,
 .message-group a {
+  transition: .05s;
   -webkit-transition: .05s;
   text-decoration: none
 }
