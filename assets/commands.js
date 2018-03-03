@@ -4,7 +4,7 @@ const commands = {
       name: 'profile',
       desc: 'Shows your profile.',
       aliases: ['rank'],
-      usage: '(@mention or ID)'
+      usage: '(@mention or ID)',
     },
     {
       name: 'toplevels',
@@ -20,12 +20,28 @@ const commands = {
       name: 'rep',
       desc: 'Rep a user.',
       usage: '(@mention or ID)',
+      example: {
+        command: {
+          content: '-rep 145764790046818304',
+        },
+        response: {
+          content: 'I gave Rave#0737 a rep.',
+        }
+      }
     },
     {
       name: 'fishy',
       desc: 'Go fishing.  You can get a random amount of fishies betwen 5-20 \
       if fishing for yourself, or 15-30 if fishing for someone else.',
       usage: '(@mention or ID)',
+      example: {
+        command: {
+          content: '-fishy 145764790046818304',
+        },
+        response: {
+          content: 'You caught 22 fishies for Rave#0737! :fishy:',
+        }
+      }
     },
     {
       name: 'topfishies',
@@ -71,6 +87,37 @@ const commands = {
       name: 'fm',
       desc: 'Gets the last played track on last.fm',
       usage: '(set) (username)',
+      example: {
+        command: {
+          content: '-fm',
+        },
+        response: {
+          embed: {
+            author: {
+              name: 'tzuwy - Now Playing',
+              icon_url: 'https://i.imgur.com/C7u8gqg.jpg',
+            },
+            color: 0xb90000,
+            thumbnail: {
+              url: 'http://lastfm-img2.akamaized.net/i/u/174s/6049544723241b6f689cd5c0f1f3bb48.png?width=72&height=72',
+            },
+            fields: [
+              {
+                name: 'Artist - Song',
+                value: 'Red Velvet - [Bad Boy](https://www.last.fm/music/Red+Velvet/_/Bad+Boy)',
+              },
+              {
+                name: 'Album',
+                value: 'The Perfect Red Velvet - The 2nd Album Repackage'
+              }
+            ],
+            footer: {
+              text: 'Total Tracks: 63287',
+            },
+            timestamp: '2018-03-03T05:06:33.246Z',
+          }
+        }
+      }
     },
     {
       name: 'crypto',
@@ -157,6 +204,20 @@ const commands = {
       name: 'play',
       desc: 'Evaluates Rust code in the playground.',
       usage: '[rust code]',
+      example: {
+        command: {
+          content: '-play ```rust\nfn main() {\
+            \n    println!("Hello, world!");\
+          \n}```',
+        },
+        response: {
+          content: '```Compiling playground v0.0.1 (file:///playground)\
+            \n    Finished dev [unoptimized + debuginfo] target(s) in 0.47 secs\
+            \n    Running `target/debug/playground`\
+            \n\nHello, world!\
+          ```',
+        }
+      }
     },
     {
       name: 'patreon',

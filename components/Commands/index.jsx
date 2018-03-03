@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import commands from '../../assets/commands'
+import DiscordView from '../Discord/discordview'
+
+import '../../styles/discord.scss'
 
 export const CommandMenu = () => (
   <aside className='menu' style={{position: 'sticky', top: '100px'}}>
@@ -83,6 +86,18 @@ export class CommandItem extends React.Component {
       usage = this.props.data.usage
     }
 
+    let example = ''
+    if (this.props.data.example) {
+      example = <div>
+          <DiscordView
+            messages={this.props.data.example}
+            username='Someone'
+            botUsername='sushii'
+            botAvatarUrl='https://cdn.discordapp.com/avatars/193163974471188480/61d7b9154888291be207b29a57bc8c9d.jpg' />
+        </div>
+      
+    }
+
     return (
       <div style={{marginBottom: '30px'}}>
         <div>
@@ -95,6 +110,8 @@ export class CommandItem extends React.Component {
           {aliases}
           Usage: <code>{this.props.data.name + ' ' + usage}</code>
         </p>
+        {example && 'Example:'}
+        {example ? example : ''}
       </div>
     )
   }
