@@ -92,12 +92,12 @@ export class CommandItem extends React.Component {
     let example = ''
     if (this.props.data.example) {
       example = <div>
-          <DiscordView
-            messages={this.props.data.example}
-            username='Someone'
-            botUsername='sushii'
-            botAvatarUrl='https://cdn.discordapp.com/avatars/193163974471188480/61d7b9154888291be207b29a57bc8c9d.jpg' />
-        </div>
+        <DiscordView
+          messages={this.props.data.example}
+          username='Someone'
+          botUsername='sushii'
+          botAvatarUrl='https://cdn.discordapp.com/avatars/193163974471188480/61d7b9154888291be207b29a57bc8c9d.jpg' />
+      </div>
       
     }
 
