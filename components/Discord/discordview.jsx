@@ -27,8 +27,8 @@ class MessageTimestamp extends React.Component {
 
 class MessageBody extends React.Component {
   static propTypes = {
-    content: PropTypes.string.isRequired,
-    isBot: PropTypes.bool.isRequired,
+    content: PropTypes.string,
+    isBot: PropTypes.bool,
   }
 
   render() {
@@ -50,7 +50,7 @@ class MessageBody extends React.Component {
 class CozyMessageHeader extends React.Component {
   static propTypes = {
     username: PropTypes.string.isRequired,
-    isBot: PropTypes.bool.isRequired,
+    isBot: PropTypes.bool,
   }
 
   render() {

@@ -50,7 +50,7 @@ const EmbedTitle = ({ title, url }) => {
 
 class EmbedDescription extends React.Component {
   static propTypes = {
-    content: PropTypes.object.isRequired,
+    content: PropTypes.object,
   }
 
   render() {
@@ -64,9 +64,9 @@ class EmbedDescription extends React.Component {
 
 class EmbedAuthor extends React.Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    icon_url: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    url: PropTypes.string,
+    icon_url: PropTypes.string,
   }
 
   render() {
@@ -136,7 +136,7 @@ class EmbedThumbnail extends React.Component {
 
 class EmbedImage extends React.Component {
   static propTypes = {
-    url: PropTypes.string.isRequired,
+    url: PropTypes.string,
   }
 
   render() {
@@ -154,7 +154,7 @@ class EmbedFooter extends React.Component {
   static propTypes = {
     timestamp: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    icon_url: PropTypes.string.isRequired,
+    icon_url: PropTypes.string,
   }
 
   render() {
@@ -179,7 +179,7 @@ class EmbedFooter extends React.Component {
 
 class EmbedFields extends React.Component {
   static propTypes = {
-    fields: PropTypes.object.isRequired,
+    fields: PropTypes.array.isRequired,
   }
 
   render() {
@@ -193,16 +193,16 @@ class EmbedFields extends React.Component {
 
 class Embed extends React.Component {
   static propTypes = {
-    color: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    fields: PropTypes.object.isRequired,
-    thumbnail: PropTypes.object.isRequired,
-    image: PropTypes.object.isRequired,
-    timestamp: PropTypes.string.isRequired,
-    footer: PropTypes.object.isRequired,
+    color: PropTypes.number,
+    author: PropTypes.object,
+    title: PropTypes.string,
+    url: PropTypes.string,
+    description: PropTypes.string,
+    fields: PropTypes.array,
+    thumbnail: PropTypes.object,
+    image: PropTypes.object,
+    timestamp: PropTypes.string,
+    footer: PropTypes.object,
   }
   
   render() {

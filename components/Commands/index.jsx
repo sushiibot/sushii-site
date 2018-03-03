@@ -19,7 +19,7 @@ export const CommandMenu = () => (
 
 class CommandMenuItem extends React.Component {
   static propTypes = {
-    name: PropTypes.object.isRequired
+    name: PropTypes.string.isRequired
   }
 
   render() {
@@ -35,7 +35,7 @@ class CommandMenuItem extends React.Component {
 
 export class CommandCategory extends React.Component {
   static propTypes = {
-    name: PropTypes.object.isRequired
+    name: PropTypes.string.isRequired
   }
 
   render() {
@@ -76,11 +76,11 @@ export class CommandItem extends React.Component {
     // command aliases
     let aliases = ''
     if (this.props.data.aliases) {
-      aliases = <div>
+      aliases = <span>
         <span className="has-text-grey">
           Aliases: {this.props.data.aliases.join(', ')}
         </span> <br />
-      </div>
+      </span>
     }
 
     // command usage
