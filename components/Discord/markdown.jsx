@@ -126,7 +126,7 @@ Object.keys(Emoji).forEach(category => {
   })
 })
 
-const EMOJI_NAME_AND_DIVERSITY_RE = /^:([^\s:]+?(?:::skin\-tone\-\d)?):/
+const EMOJI_NAME_AND_DIVERSITY_RE = /^:([^\s:]+?(?:::skin-tone-\d)?):/
 
 function convertNameToSurrogate(name, t='') {
   // what is t for?
@@ -144,7 +144,7 @@ function convertSurrogateToName(surrogate, colons=true, n='') {
   return colons ? `:${a}:` : a
 }
 
-const escape = (str) => str.replace(/[\-\[\]\/\{}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
+const escape = (str) => str.replace(/[-\[\]\/\{}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
 
 const replacer = (function() {
   const surrogates = Object.keys(EMOJI_TO_NAME)
@@ -188,7 +188,7 @@ const baseRules = {
   codeBlock: {
     order: SimpleMarkdown.defaultRules.codeBlock.order,
     match(source) {
-      return /^```(([A-z0-9\-]+?)\n+)?\n*([^]+?)\n*```/.exec(source)
+      return /^```(([A-z0-9-]+?)\n+)?\n*([^]+?)\n*```/.exec(source)
     },
     parse(capture) {
       return { lang: (capture[2] || '').trim(), content: capture[3] || '' }

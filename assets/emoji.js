@@ -4286,4 +4286,4 @@ export default {
     names: ['gay_pride_flag', 'rainbow_flag'],
     surrogates: '🏳️‍🌈'
   }]
-};
+}

@@ -26,7 +26,7 @@ class CommandMenuItem extends React.Component {
     return (
       <li>
         <a href={'#' + this.props.name.toLowerCase()}>
-        { this.props.name }
+          { this.props.name }
         </a>
       </li>
     )
