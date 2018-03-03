@@ -281,11 +281,11 @@ const baseRules = {
       return /^(@\w+)/.exec(source)
     },
     parse(capture) {
-      return { type: 'mention', content: capture[1] }
+      return { content: capture[1] }
     },
-    react(node) {
+    react(node, recurseOutput, state) {
       return (
-        <span className='mention'>
+        <span className='mention' key={state.key}>
           {node.content}
         </span>
       )

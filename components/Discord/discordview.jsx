@@ -35,14 +35,11 @@ class MessageBody extends React.Component {
     const { content, isBot } = this.props
     
     if (content) {
-      let body = null
       if (isBot) {
-        body = <div className='markup'>{parseAllowLinks(content, true, {}, jumboify)}</div>
-      } else {
-        body = <div className='markup'>{parse(content, true, {}, jumboify)}</div>
-      }
+        return <div className='markup'>{parseAllowLinks(content, true, {}, jumboify)}</div>
+      } 
       
-      return body
+      return <div className='markup'>{parse(content, true, {}, jumboify)}</div>
     }
 
     return null
@@ -119,16 +116,20 @@ class DiscordMessage extends React.Component {
     isBot: PropTypes.bool,
   }
 
-  static defaultProps = {
-    avatar: 'https://cdn.discordapp.com/embed/avatars/0.png'
-  }
-
   render() {
-    let { msg, username, avatar, isBot } = this.props
+    const { msg, username, avatar, isBot } = this.props
+    let defaultAvatar
+
+    if (!avatar) {
+      // const rand = Math.floor(Math.random() * (4 - 0 + 1)) + 0
+      // this just prevents Warning: Prop `style` did not match.
+      const fake_rand = msg.content.length % 4
+      defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${fake_rand}.png`
+    }
 
     return (
       <div className='message-group hide-overflow'>
-        <Avatar url={avatar} />
+        <Avatar url={avatar ? avatar : defaultAvatar} />
         <div className='comment'>
           <div className='discord-message first'>
             <CozyMessageHeader username={username} isBot={isBot} />
