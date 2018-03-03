@@ -71,10 +71,29 @@ const commands = {
       name: 'remind me',
       desc: 'Reminds you to do something after some time.',
       usage: '(in) (# days) (# hours) (# minutes) (# seconds) (to) [description]',
+      example: {
+        command: {
+          content: '-remind me in 3 hours 2 minutes to go fishing',
+        },
+        response: {
+          content: 'I\'ll remind you in 3 hours and 2 minutes (`2018-03-03 21:52:43 UTC`) to `go fishing`',
+        }
+      }
     },
     {
       name: 'reminder list',
       desc: 'Shows your pending reminders.',
+      example: {
+        command: {
+          content: '-reminder list',
+        },
+        response: {
+          content: 'You have 1 reminders:\
+            \n      ```2018-03-03 21:52:43 UTC (in 3 hours, 1 minute and 3 seconds)\
+            \n    go fishing\
+            \n\nCurrent time: 2018-03 - 03 18: 51: 39 UTC```',
+        }
+      }
     },
   ],
   Search: [
