@@ -35,11 +35,14 @@ class MessageBody extends React.Component {
     const { content, isBot } = this.props
     
     if (content) {
+      let body = null
       if (isBot) {
-        return <div className='markup'>{parseAllowLinks(content, true, {}, jumboify)}</div>
+        body = <div className='markup'>{parseAllowLinks(content, true, {}, jumboify)}</div>
+      } else {
+        body = <div className='markup'>{parse(content, true, {}, jumboify)}</div>
       }
-
-      return <div className='markup'>{parse(content, true, {}, jumboify)}</div>
+      
+      return body
     }
 
     return null

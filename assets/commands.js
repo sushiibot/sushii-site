@@ -22,7 +22,7 @@ const commands = {
       usage: '(@mention or ID)',
       example: {
         command: {
-          content: '-rep 170366273354596352',
+          content: '-rep @Joshy',
         },
         response: {
           content: 'I gave Joshy#0001 a rep.',

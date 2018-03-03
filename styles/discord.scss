@@ -505,7 +505,7 @@ $discord-border-radius: 10px;
 
 .message-group .comment .markup code.inline,
 .message-group .comment .markup pre {
-  font-family: Consolas, Liberation Mono, Menlo, Courier, monospace;
+  font-family: Consolas, Liberation Mono, Menlo, Courier, monospace !important;
   background: #f9f9f9
 }
 
@@ -753,6 +753,24 @@ $discord-border-radius: 10px;
 
 .theme-dark .message-group .embed .embed-fields .embed-field-name {
   color: #fff
+}
+
+.mention {
+  -webkit-transition: background-color .05s,color .05s;
+  background: rgba(115,139,215,.1);
+  color: #7289da;
+  font-weight: 500;
+  transition: background-color .05s,color .05s
+}
+
+.mention:hover {
+  background-color: #7289da;
+  color: #fff;
+  cursor: pointer
+}
+
+.mention:active {
+  top: 1px
 }
 
 .emoji {

@@ -274,6 +274,22 @@ const baseRules = {
     order: SimpleMarkdown.defaultRules.u.order,
     match: SimpleMarkdown.inlineRegex(/^~~([\s\S]+?)~~(?!_)/),
     parse: SimpleMarkdown.defaultRules.u.parse
+  },
+  mention: {
+    order: SimpleMarkdown.defaultRules.text.order,
+    match(source) {
+      return /^(@\w+)/.exec(source)
+    },
+    parse(capture) {
+      return { type: 'mention', content: capture[1] }
+    },
+    react(node) {
+      return (
+        <span className='mention'>
+          {node.content}
+        </span>
+      )
+    }
   }
 }
 
