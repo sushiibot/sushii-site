@@ -118,7 +118,7 @@ const commands = {
             },
             color: 0xb90000,
             thumbnail: {
-              url: 'http://lastfm-img2.akamaized.net/i/u/174s/6049544723241b6f689cd5c0f1f3bb48.png?width=72&height=72',
+              url: 'https://lastfm-img2.akamaized.net/i/u/174s/6049544723241b6f689cd5c0f1f3bb48.png?width=72&height=72',
             },
             fields: [
               {
