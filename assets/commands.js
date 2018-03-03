@@ -85,7 +85,7 @@ const commands = {
     },
     {
       name: 'fm',
-      desc: 'Gets the last played track on last.fm',
+      desc: 'Gets the last played track on Last.fm',
       usage: '(set) (username)',
       example: {
         command: {
