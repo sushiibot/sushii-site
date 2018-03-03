@@ -24,9 +24,11 @@ class CommandMenuItem extends React.Component {
 
   render() {
     return (
-      <li><a href={ '#' + this.props.name.toLowerCase() }>
+      <li>
+        <a href={'#' + this.props.name.toLowerCase()}>
         { this.props.name }
-      </a></li>
+        </a>
+      </li>
     )
   }
 }
@@ -38,8 +40,9 @@ export class CommandCategory extends React.Component {
 
   render() {
     return (
-      <h3 className='title is-4 is-spaced bd-anchor-title' id={this.props.name.toLowerCase()}>
+      <h3 className='title is-4 is-spaced bd-anchor-title'>
         {this.props.name}
+        <span className='bd-anchor-target' id={this.props.name.toLowerCase()}></span>
         <a className='bd-anchor-link' href={'#' + this.props.name.toLowerCase()}>
           #
         </a>

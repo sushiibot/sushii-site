@@ -22,10 +22,10 @@ const commands = {
       usage: '(@mention or ID)',
       example: {
         command: {
-          content: '-rep 145764790046818304',
+          content: '-rep 170366273354596352',
         },
         response: {
-          content: 'I gave Rave#0737 a rep.',
+          content: 'I gave Joshy#0001 a rep.',
         }
       }
     },
@@ -36,10 +36,10 @@ const commands = {
       usage: '(@mention or ID)',
       example: {
         command: {
-          content: '-fishy 145764790046818304',
+          content: '-fishy 170366273354596352',
         },
         response: {
-          content: 'You caught 22 fishies for Rave#0737! :fishy:',
+          content: 'You caught 22 fishies for Joshy#0001! :fishy:',
         }
       }
     },
