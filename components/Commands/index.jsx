@@ -89,12 +89,15 @@ export class CommandItem extends React.Component {
       usage = this.props.data.usage
     }
 
+    const usernames = ['Someone', 'nobody', 'you']
+    let username = usernames[Math.floor(Math.random() * usernames.length)]
+
     let example = ''
     if (this.props.data.example) {
       example = <div>
         <DiscordView
           messages={this.props.data.example}
-          username='Someone'
+          username={username}
           botUsername='sushii'
           botAvatarUrl='https://cdn.discordapp.com/avatars/193163974471188480/61d7b9154888291be207b29a57bc8c9d.jpg' />
       </div>
@@ -103,18 +106,18 @@ export class CommandItem extends React.Component {
 
     return (
       <div style={{marginBottom: '30px'}}>
-        <div>
-          <span className="has-text-weight-bold">
-            {this.props.data.name}  
-          </span>  {permissions}
+        <span className='has-text-weight-bold'>
+          {this.props.data.name}
+        </span>  {permissions}
+        <div className='command-content'>
+          <p>{this.props.data.desc}
+            <br />
+            {aliases}
+            Usage: <code>{this.props.data.name + ' ' + usage}</code>
+          </p>
+          {example && 'Example:'}
+          {example ? example : ''}
         </div>
-        <p>{this.props.data.desc}
-          <br />
-          {aliases}
-          Usage: <code>{this.props.data.name + ' ' + usage}</code>
-        </p>
-        {example && 'Example:'}
-        {example ? example : ''}
       </div>
     )
   }

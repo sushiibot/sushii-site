@@ -121,10 +121,10 @@ class DiscordMessage extends React.Component {
     let defaultAvatar
 
     if (!avatar) {
-      // const rand = Math.floor(Math.random() * (4 - 0 + 1)) + 0
+      const rand = Math.floor(Math.random() * (4 - 0 + 1)) + 0
       // this just prevents Warning: Prop `style` did not match.
-      const fake_rand = msg.content.length % 4
-      defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${fake_rand}.png`
+      // const fake_rand = msg.content.length % 4
+      defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${rand}.png`
     }
 
     return (
