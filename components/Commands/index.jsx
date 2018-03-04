@@ -105,8 +105,8 @@ export class CommandItem extends React.Component {
     }
 
     return (
-      <div style={{marginBottom: '30px'}}>
-        <span className='has-text-weight-bold'>
+      <div className='command-item' style={{marginBottom: '30px'}}>
+        <span className='command-name has-text-weight-bold'>
           {this.props.data.name}
         </span>  {permissions}
         <div className='command-content'>

@@ -4,10 +4,16 @@
   padding-left: 10px;
 }
 
-.command-content:hover {
+.command-item:hover > .command-content {
   border-left: 2px solid #49baff;
   -webkit-transition: border-left .1s ease-in-out;
   transition: border-left .1s ease-in-out;
+}
+
+.command-item:hover > .command-name {
+  color: #49baff;
+  -webkit-transition: color .1s ease-in-out;
+  transition: color .1s ease-in-out;
 }
 
 .bd-anchor-title {
