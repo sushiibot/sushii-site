@@ -10,10 +10,18 @@
   transition: border-left .1s ease-in-out;
 }
 
+.command-name {
+  color: #ffffff;
+}
+
 .command-item:hover > .command-name {
   color: #49baff;
   -webkit-transition: color .1s ease-in-out;
   transition: color .1s ease-in-out;
+}
+
+.menu-is-active {
+  color: #49baff !important;
 }
 
 .bd-anchor-title {
@@ -22,8 +30,8 @@
 }
 
 .bd-anchor-target {
-  padding-top: 80px;
-  margin-top: -80px;
+  padding-top: 75px;
+  margin-top: -75px;
 }
 
 @media screen and (max-width: 1215px) {

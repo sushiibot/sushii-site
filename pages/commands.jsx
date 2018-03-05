@@ -10,7 +10,7 @@ const DocsPage = () => (
         Commands
       </h1>
       <div className='columns'>
-        <div className='column is-one-fifth'>
+        <div className='column is-2'>
           <CommandMenu />
         </div>
         <section className='section'>
