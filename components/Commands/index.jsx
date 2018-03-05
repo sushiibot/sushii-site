@@ -17,9 +17,9 @@ export class CommandMenu extends React.Component {
     Object.keys(commands).forEach(category => {
       const id = category.toLowerCase().replace(' ', '_')
       const element = document.getElementById(id)
-      const rect = element.getBoundingClientRect()
+      const top = element.getBoundingClientRect().top + window.pageYOffset
       const newState = this.state.positions
-      newState[rect.top] = id
+      newState[top] = id
 
       this.setState(() => ({
         positions: newState
@@ -27,10 +27,16 @@ export class CommandMenu extends React.Component {
     })
 
     document.addEventListener('scroll', () => {
-      this.setState(() => ({
-        activeId: this.getActiveCommand()
-      }))
+      this.setActiveCommand()
     })
+
+    this.setActiveCommand()
+  }
+
+  setActiveCommand() {
+    this.setState(() => ({
+      activeId: this.getActiveCommand()
+    }))
   }
 
   getActiveCommand() {
@@ -38,7 +44,7 @@ export class CommandMenu extends React.Component {
 
     let max
     Object.keys(positions).forEach(pos => {
-      if (window.pageYOffset > pos) {
+      if (window.pageYOffset > pos - 15) {
         max = pos
       }
     })

@@ -105,7 +105,7 @@ class Navbar extends React.Component {
                 <div className='navbar-dropdown is-boxed'>
                   {
                     Object.keys(commands).map((category, i) => {
-                      return <NavbarItem href={'/commands#' + category.toLowerCase()} name={category} key={i} />
+                      return <NavbarItem href={'/commands#' + category.toLowerCase().replace(' ', '_')} name={category} key={i} />
                     })
                   }
                 </div>
