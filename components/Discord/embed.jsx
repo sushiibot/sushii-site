@@ -50,7 +50,7 @@ const EmbedTitle = ({ title, url }) => {
 
 class EmbedDescription extends React.Component {
   static propTypes = {
-    content: PropTypes.object,
+    content: PropTypes.string,
   }
 
   render() {
@@ -115,7 +115,7 @@ class EmbedField extends React.Component {
 
 class EmbedThumbnail extends React.Component {
   static propTypes = {
-    url: PropTypes.string.isRequired,
+    url: PropTypes.string,
   }
 
   render() {
@@ -152,8 +152,8 @@ class EmbedImage extends React.Component {
 
 class EmbedFooter extends React.Component {
   static propTypes = {
-    timestamp: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    timestamp: PropTypes.string,
+    text: PropTypes.string,
     icon_url: PropTypes.string,
   }
 
@@ -181,7 +181,7 @@ class EmbedFooter extends React.Component {
 
 class EmbedFields extends React.Component {
   static propTypes = {
-    fields: PropTypes.array.isRequired,
+    fields: PropTypes.array,
   }
 
   render() {
