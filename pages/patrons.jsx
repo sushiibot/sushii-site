@@ -25,6 +25,7 @@ const PatronPage = () => (
                 <li>Rave</li>
                 <li>Code</li>
                 <li>Kaze</li>
+                <li>Jinnie</li>
               </ul>
               <span className='icon has-text-danger'>
                 <FontAwesomeIcon icon={['far', 'heart']} />
