@@ -170,7 +170,7 @@ export class CommandItem extends React.Component {
           username={username ? username : fallbackUsername}
           avatar={avatar}
           botUsername='sushii'
-          botAvatarUrl='https://cdn.discordapp.com/avatars/193163974471188480/61d7b9154888291be207b29a57bc8c9d.jpg' />
+          botAvatarUrl='/static/sushiiAvatar.jpg' />
       </div>
       
     }
