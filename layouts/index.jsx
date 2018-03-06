@@ -16,14 +16,7 @@ import '../styles/style.scss'
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet
-      title="sushii"
-      meta={[
-        { name: 'description', content: 'A discord bot.' },
-        { name: 'keywords', content: 'sushii, discord, rust' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1'}
-      ]}
-    />
+    <Helmet title="sushii" />
     <Navbar />
     { children }
   </div>

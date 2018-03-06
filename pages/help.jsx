@@ -1,9 +1,11 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import Layout from '../layouts/'
 import HelpMenu from '../components/HelpMenu'
 
 const DocsPage = () => (
   <Layout>
+    <Helmet title="Help | sushii" />
     <div className='container' style={{ marginTop: '100px' }}>
       <h1 className='title'>
         Help

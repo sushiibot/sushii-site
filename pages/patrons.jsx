@@ -1,9 +1,11 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import Layout from '../layouts/'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 const PatronPage = () => (
   <Layout>
+    <Helmet title="Patrons | sushii" />
     <section className='hero is-fullheight'>
       <div className='hero-body'>
         <div className='container'>

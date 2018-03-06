@@ -1,10 +1,12 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import Layout from '../layouts/'
 import commands from '../assets/commands'
 import { CommandMenu, CommandCategory, CommandItem } from '../components/Commands'
 
 const DocsPage = () => (
   <Layout>
+    <Helmet title="Commands | sushii" />
     <div className='container' style={{ marginTop: '100px' }}>
       <h1 className='title'>
         Commands

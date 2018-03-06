@@ -1,8 +1,10 @@
 import React from 'react'
 import Layout from '../layouts/'
+import Helmet from 'react-helmet'
 
 const AboutPage = () => (
   <Layout>
+    <Helmet title="About | sushii" />
     <div className='container' style={{ marginTop: '100px' }}>
       <h1 className='title'>
         About
