@@ -151,17 +151,18 @@ class DiscordView extends React.Component {
   static propTypes = {
     messages: PropTypes.object.isRequired,
     username: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
     botUsername: PropTypes.string.isRequired,
     botAvatarUrl: PropTypes.string.isRequired,
   }
 
   render() {
-    const {messages, username, botUsername, botAvatarUrl} = this.props
+    const {messages, username, avatar, botUsername, botAvatarUrl} = this.props
 
     return (
       <div className='w-100 h-100 br2 flex flex-column white overflow-hidden'>
         <DiscordViewWrapper >
-          <DiscordMessage msg={messages.command} username={username} />
+          <DiscordMessage msg={messages.command} username={username} avatar={avatar} />
           <DiscordMessage msg={messages.response} username={botUsername} avatar={botAvatarUrl} isBot={true} />
         </DiscordViewWrapper>
       </div>

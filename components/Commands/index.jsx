@@ -129,15 +129,11 @@ export class CommandItem extends React.Component {
 
     // required permissions
     let permissions = ''
-    if (data.permissions &&
-      data.optional) {
+    if (data.permissions && data.optional) {
       permissions = <span className="tag is-warning">
         {data.permissions}
       </span>
-    } else if (
-      data.permissions &&
-      !data.optional
-    ) {
+    } else if (data.permissions && !data.optional) {
       permissions = <span className="tag is-danger">
         {data.permissions}
       </span>
@@ -159,15 +155,20 @@ export class CommandItem extends React.Component {
       usage = data.usage
     }
 
+    // use given username / avatar or fallback to random values
+    const username = data.example ? data.example.command.username : null
+    const avatar = data.example ? data.example.command.avatar : null
+
     const usernames = ['Someone', 'nobody', 'you']
-    let username = usernames[Math.floor(Math.random() * usernames.length)]
+    const fallbackUsername = usernames[Math.floor(Math.random() * usernames.length)]
 
     let example = ''
     if (data.example) {
       example = <div>
         <DiscordView
           messages={data.example}
-          username={username}
+          username={username ? username : fallbackUsername}
+          avatar={avatar}
           botUsername='sushii'
           botAvatarUrl='https://cdn.discordapp.com/avatars/193163974471188480/61d7b9154888291be207b29a57bc8c9d.jpg' />
       </div>
@@ -178,8 +179,8 @@ export class CommandItem extends React.Component {
 
     return (
       <div className='command-item' style={{marginBottom: '30px'}}>
-        <span className='bd-anchor-target' id={anchor_id}/>
-        <a className='command-name has-text-weight-bold' href={'#' + anchor_id}>
+        <span className='bd-anchor-target' id={'cmd_' + anchor_id}/>
+        <a className='command-name has-text-weight-bold' href={'#cmd_' + anchor_id}>
           {data.name}
         </a>  {permissions}
         <div className='command-content'>
