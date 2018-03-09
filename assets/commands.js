@@ -7,16 +7,6 @@ const commands = {
       usage: '(@mention or ID)',
     },
     {
-      name: 'toplevels',
-      desc: 'Shows the top user levels in the guild.',
-      usage: '(global)',
-    },
-    {
-      name: 'topreps',
-      desc: 'Shows the top users.',
-      usage: '(global)',
-    },
-    {
       name: 'rep',
       desc: 'Rep a user.',
       usage: '(@mention or ID)',
@@ -34,6 +24,7 @@ const commands = {
       desc: 'Go fishing.  You can get a random amount of fishies betwen 5-20 \
       if fishing for yourself, or 15-30 if fishing for someone else.',
       usage: '(@mention or ID)',
+      aliases: ['foshy', 'fwishy'],
       example: {
         command: {
           content: '-fishy 170366273354596352',
@@ -45,9 +36,19 @@ const commands = {
     },
     {
       name: 'topfishies',
-      desc: 'Top 10 users with most fishies.',
+      desc: 'Shows top 10 users with most fishies.',
       usage: '(global)',
-    }
+    },
+    {
+      name: 'toplevels',
+      desc: 'Shows top 10 users with highest levels.',
+      usage: '(global)',
+    },
+    {
+      name: 'topreps',
+      desc: 'Shows top 10 users with most rep.',
+      usage: '(global)',
+    },
   ],
   Notifications: [
     {
@@ -59,6 +60,7 @@ const commands = {
     {
       name: 'notification list',
       desc: 'Lists your set notifications.',
+      aliases: ['notifications'],
     },
     {
       name: 'notification delete',
@@ -109,16 +111,18 @@ const commands = {
       example: {
         command: {
           content: '-fm',
+          avatar: '/static/carlos.png',
+          username: 'carlos',
         },
         response: {
           embed: {
             author: {
-              name: 'tzuwy - Now Playing',
-              icon_url: 'https://i.imgur.com/C7u8gqg.jpg',
+              name: 'carlos - Now Playing',
+              icon_url: '/static/lfm.jpg',
             },
             color: 0xb90000,
             thumbnail: {
-              url: 'https://lastfm-img2.akamaized.net/i/u/174s/6049544723241b6f689cd5c0f1f3bb48.png?width=72&height=72',
+              url: '/static/rv.png',
             },
             fields: [
               {
@@ -139,6 +143,12 @@ const commands = {
       }
     },
     {
+      name: 'urban',
+      desc: 'Looks up a definition on Urban Dictionary.',
+      aliases: ['ud'],
+      usage: '[word]',
+    },
+    {
       name: 'crypto',
       desc: 'Gets current cryptocurrency prices.',
       usage: '(symbol)',
@@ -149,32 +159,166 @@ const commands = {
       name: 'userinfo',
       desc: 'Gets information about a user.',
       usage: '(@mention or ID)',
+      example: {
+        command: {
+          content: '-userinfo @carlos'
+        },
+        response: {
+          embed: {
+            author: {
+              name: 'carlos#8170',
+              icon_url: '/static/carlos.png',
+            },
+            thumbnail: {
+              url: '/static/carlos.png',
+            },
+            fields: [
+              {
+                name: 'ID',
+                value: '250317545112993792',
+                inline: true,
+              },
+              {
+                name: 'Created At',
+                value: '2016-11-21 17:52:33 UTC',
+                inline: true,
+              },
+              {
+                name: 'Joined At',
+                value: '2018-01-06 22:47:19 UTC',
+                inline: true,
+              },
+              {
+                name: 'Last Message',
+                value: '2018-01-30 22:32:01 UTC',
+                inline: true,
+              },
+              {
+                name: 'Status',
+                value: 'Online',
+                inline: true,
+              },
+              {
+                name: 'Roles',
+                value: 'Hey, hey, heyy',
+              },
+            ]
+          }
+        }
+      }
     },
     {
       name: 'avatar',
       desc: 'Gets the avatar for a user.',
       usage: '(@mention or ID)',
+      example: {
+        command: {
+          content: '-avatar @carlos'
+        },
+        response: {
+          embed: {
+            author: {
+              name: 'carlos#8170\'s avatar'
+            },
+            color: 0x3498db,
+            image: {
+              url: '/static/carlos.png',
+            },
+          }
+        }
+      }
     },
   ],
   Tags: [
     {
-      name: 't',
-      desc: 'Gets a tag.',
-      usage: '[name]',
+      name: 'tag',
+      desc: 'Gets a tag.  This is used as a "custom" command.',
+      customUsage: '[prefix][name]',
+      example: {
+        command: {
+          content: '-hey',
+          avatar: '/static/carlos.png',
+          username: 'carlos',
+        },
+        response: {
+          content: 'hey hey heyyy wasawasawasawasaup'
+        }
+      }
     },
     {
       name: 'tag random',
       desc: 'Gets a random tag.',
+      example: {
+        command: {
+          content: '-tag random',
+          avatar: '/static/carlos.png',
+          username: 'carlos',
+        },
+        response: {
+          content: 'hey: hey hey heyyy wasawasawasawasaup'
+        }
+      }
     },
     {
       name: 'tag info',
       desc: 'Gets information about a tag.',
       usage: '[name]',
+      example: {
+        command: {
+          content: '-tag info hey',
+          avatar: '/static/carlos.png',
+          username: 'carlos',
+        },
+        response: {
+          embed: {
+            author: {
+              name: 'carlos#8170',
+              icon_url: '/static/carlos.png',
+            },
+            fields: [
+              {
+                name: 'Name',
+                value: 'hey',
+                inline: true,
+              },
+              {
+                name: 'Content',
+                value: 'hey hey heyyy wasawasawasawasaup',
+                inline: true,
+              },
+              {
+                name: 'Use Count',
+                value: '35',
+                inline: true,
+              },
+              {
+                name: 'Owner',
+                value: '@carlos',
+                inline: true,
+              },
+            ],
+            footer: {
+              text: 'Created on',
+            },
+            timestamp: '2018-03-03T05:06:33.246Z',
+          }
+        }
+      }
     },
     {
       name: 'tag add',
       desc: 'Adds a new tag.',
       usage: '[name] [content]',
+      example: {
+        command: {
+          content: '-tag add hey hey hey heyyy wasawasawasawasaup',
+          avatar: '/static/carlos.png',
+          username: 'carlos',
+        },
+        response: {
+          content: 'Added a tag named `hey` with response `hey hey heyyy wasawasawasawasaup`.'
+        }
+      }
     },
     {
       name: 'tag list',
@@ -191,13 +335,38 @@ const commands = {
     },
     {
       name: 'tag delete',
-      desc: 'Deletes a tag.',
+      desc: 'Deletes a tag.  Only the tag owner and users with MANAGE_GUILD may delete the tag.',
       usage: '[name]',
     },
     {
       name: 'tag edit',
-      desc: 'Edits an existing tag.',
-      usage: '[name] [new name] [new content]',
+      desc: 'Edits a tag\'s content.  Only the tag owner and users with MANAGE_GUILD may edit the tag.',
+      usage: '[name] [new content]',
+      example: {
+        command: {
+          content: '-tag edit hey faith and belief is the one thing we need to change the world',
+          avatar: '/static/carlos.png',
+          username: 'carlos',
+        },
+        response: {
+          content: 'Edited the tag `hey` with new response `faith and belief is the one thing we need to change the world`.'
+        }
+      }
+    },
+    {
+      name: 'tag rename',
+      desc: 'Renames a tag.  Only the tag owner and users with MANAGE_GUILD may rename the tag.',
+      usage: '[name] [new name]',
+      example: {
+        command: {
+          content: '-tag rename hey faith',
+          avatar: '/static/carlos.png',
+          username: 'carlos',
+        },
+        response: {
+          content: 'Renamed the tag `hey` to `faith`.'
+        }
+      }
     },
   ],
   Meta: [
@@ -247,36 +416,98 @@ const commands = {
     {
       name: 'modping',
       desc: 'Pings a single moderator for mod action.',
+      example: {
+        command: {
+          content: '-modping',
+        },
+        response: {
+          content: '@aModerator, you were pinged for a mod action by someone#1234.'
+        }
+      }
     },
     {
       name: 'reason',
       desc: 'Edits the reason for moderation action cases.',
       usage: '[case #](-case #) [reason]',
-      permissions: 'BAN_MEMBERS'
+      permissions: 'BAN_MEMBERS',
+      example: {
+        command: {
+          content: '-reason 32-36 bad boy',
+        },
+        response: {
+          content: 'Finished updating case reasons.',
+        }
+      }
     },
     {
       name: 'history',
       desc: 'Looks up past cases for a user.',
       usage: '[@mention or ID]',
-      permissions: 'BAN_MEMBERS'
+      permissions: 'BAN_MEMBERS',
+      example: {
+        command: {
+          content: '-history @someone'
+        },
+        response: {
+          embed: {
+            author: {
+              name: 'Case History for someone#1234',
+              icon_url: 'https://cdn.discordapp.com/embed/avatars/1.png',
+            },
+            color: 0xe67e22,
+            description: '`[Case #29]` mute by @sushiiDev for Automated Mute: User left with a mute role.\n\
+              `[Case #23]` mute by @aModerator for toxic'
+          }
+        }
+      }
     },
     {
       name: 'ban',
-      desc: 'Bans a user or ID.',
-      usage: '[@mention or ID] (reason)',
-      permissions: 'BAN_MEMBERS'
+      desc: 'Bans one or more users.  You can specify multiple users by separating mentions or IDs with commas and no spaces.  \
+      You can also user this command to ban users who are not in the guild.',
+      usage: '[@mention or ID](,@mention or ID) (reason)',
+      permissions: 'BAN_MEMBERS',
+      example: {
+        command: {
+          content: '-ban @BadBoy,138024618928635905,170108425940893696 Raiders'
+        },
+        response: {
+          content: '```Attempted to ban 3 users:\
+          \n\nBadBoy#1234(10836498123764283) - Successfully banned.\
+          \nadrian#0515(138024618928635905) - Successfully banned.\
+          \nrei#0098(170108425940893696) - Successfully banned.```'
+        }
+      }
     },
     {
       name: 'unban',
-      desc: 'Unbans a user or ID.',
-      usage: '[@mention or ID] (reason)',
-      permissions: 'BAN_MEMBERS'
+      desc: 'Unbans one or more users.  You can specify multiple users by separating mentions or IDs with commas and no spaces.',
+      usage: '[@mention or ID](,@mention or ID) (reason)',
+      permissions: 'BAN_MEMBERS',
+      example: {
+        command: {
+          content: '-unban 138024618928635905,206513529832996866 Ban appeal accepted',
+        },
+        response: {
+          content: '```Attempted to unban 2 users:\
+          \n\nadrian#0515(138024618928635905) - Successfully unbanned.\
+          \nWindy#2934(206513529832996866) - Error: User is not banned.```'
+        }
+      }
     },
     {
       name: 'mute',
       desc: 'Mutes a member.',
       usage: '[@mention or ID] (reason)',
-      permissions: 'BAN_MEMBERS'
+      permissions: 'BAN_MEMBERS',
+      example: {
+        command: {
+          content: '-mute @adrian Being too loud'
+        },
+        response: {
+          content: 'Muted member adrian#0515 (138024618928635905) for `being too loud`',
+        }
+      }
     },
     {
       name: 'prune',
@@ -296,14 +527,23 @@ const commands = {
     {
       name: 'joinmsg',
       desc: 'Gets the guild join message or sets one if given.  \
-      You can use the placeholders <mention>, <username>, <server> to get the corresponding values.',
+      You can use the placeholders <mention>, <username>, <server> to get the corresponding values. \
+      Set to none or off to disable.',
       usage: '(message)',
+      permissions: 'MANAGE_GUILD'
+    },
+    {
+      name: 'joinreact',
+      desc: 'Gets the guild join react or sets one if given. This reacts to the join message set above.\
+      Set to none or off to disable.',
+      usage: '(emoji)',
       permissions: 'MANAGE_GUILD'
     },
     {
       name: 'leavemsg',
       desc: 'Gets the guild leave message or sets one if given. \
-      You can use the same placeholders as listed above.',
+      You can use the same placeholders as listed above. \
+      Set to none or off to disable.',
       usage: '(message)',
       permissions: 'MANAGE_GUILD'
     },
