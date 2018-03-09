@@ -155,11 +155,17 @@ export class CommandItem extends React.Component {
       usage = data.usage
     }
 
+    let fullUsage = data.name + ' ' + usage
+
+    if (data.customUsage) {
+      fullUsage = data.customUsage
+    }
+
     // use given username / avatar or fallback to random values
     const username = data.example ? data.example.command.username : null
     const avatar = data.example ? data.example.command.avatar : null
 
-    const usernames = ['Someone', 'nobody', 'you']
+    const usernames = ['somebody', 'nobody', 'i cant think of usernames']
     const fallbackUsername = usernames[Math.floor(Math.random() * usernames.length)]
 
     let example = ''
@@ -187,7 +193,7 @@ export class CommandItem extends React.Component {
           <p>{data.desc}
             <br />
             {aliases}
-            Usage: <code>{data.name + ' ' + usage}</code>
+            Usage: <code>{fullUsage}</code>
           </p>
           {example && 'Example:'}
           {example ? example : ''}
