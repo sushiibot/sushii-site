@@ -1,9 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Router from 'next/router'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import commands from '../../assets/commands'
+import NProgress from 'nprogress'
+
+import '../../styles/nprogress.scss'
+
+Router.onRouteChangeStart = (url) => {
+  console.log(`Loading: ${url}`)
+  NProgress.start()
+}
+Router.onRouteChangeComplete = () => NProgress.done()
+Router.onRouteChangeError = () => NProgress.done()
 
 const NavbarItemLink = withRouter(({ href, name, router, type }) => {
   const NavbarType = type == 'link' ? 'navbar-link' : 'navbar-item'
