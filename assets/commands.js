@@ -93,7 +93,7 @@ const commands = {
           content: 'You have 1 reminders:\
             \n      ```2018-03-03 21:52:43 UTC (in 3 hours, 1 minute and 3 seconds)\
             \n    go fishing\
-            \n\nCurrent time: 2018-03 - 03 18: 51: 39 UTC```',
+            \n\nCurrent time: 2018-03-03 18:51:39 UTC```',
         }
       }
     },
@@ -141,6 +141,29 @@ const commands = {
           }
         }
       }
+    },
+    {
+      name: 'fm toptracks',
+      desc: 'Shows your top played tracks.  You can optionally provide a time period: overall, 7day, 1month, 3month, 6month, or 12month. \
+      By default, overall is used.',
+      aliases: ['fm topsongs'],
+      usage: '(period)',
+    },
+    {
+      name: 'fm topartists',
+      desc: 'Shows your top played artists.  You can optionally provide a time period: overall, 7day, 1month, 3month, 6month, or 12month. \
+      By default, overall is used.',
+      usage: '(period)',
+    },
+    {
+      name: 'fm topalbums',
+      desc: 'Shows your top played albums.  You can optionally provide a time period: overall, 7day, 1month, 3month, 6month, or 12month. \
+      By default, overall is used.',
+      usage: '(period)',
+    },
+    {
+      name: 'fm loved',
+      desc: 'Shows your last 10 loved tracks.',
     },
     {
       name: 'urban',
@@ -323,6 +346,7 @@ const commands = {
     {
       name: 'tag list',
       desc: 'Lists available tags.',
+      aliases: ['tags'],
     },
     {
       name: 'tag top',
@@ -502,7 +526,7 @@ const commands = {
       permissions: 'BAN_MEMBERS',
       example: {
         command: {
-          content: '-mute @adrian Being too loud'
+          content: '-mute @adrian being too loud'
         },
         response: {
           content: 'Muted member adrian#0515 (138024618928635905) for `being too loud`',
