@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const Koa = require('koa')
 const next = require('next')
 const Router = require('koa-router')
@@ -5,8 +7,6 @@ const Body = require('koa-bodyparser')
 const { graphqlKoa } = require('apollo-server-koa')
 const { graphiqlKoa } = require('apollo-server-koa')
 const schema = require('./schema')
-
-require('dotenv').config()
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'

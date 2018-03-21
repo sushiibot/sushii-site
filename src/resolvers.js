@@ -1,4 +1,36 @@
 const { find } = require('lodash')
+const Sequelize = require('sequelize')
+
+const db = new Sequelize(process.env.DB_URL, {
+  operatorsAliases: false,
+
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+})
+
+// check postgres connection
+db
+  .authenticate()
+  .then(() => {
+    console.log('[PG] Connection has been established successfully.')
+  })
+  .catch(err => {
+    console.error('[PG] Unable to connect to the database:', err)
+  })
+
+// postgres models
+const Stat = db.define('stats', {
+  stat_name: { type: Sequelize.STRING, primaryKey: true },
+  count: Sequelize.BIGINT,
+  category: Sequelize.STRING,
+}, {
+  timestamps: false,
+  underscored: true,
+})
 
 // example data 
 const guilds = [
@@ -35,5 +67,6 @@ module.exports = {
   Query: {
     guilds: () => guilds,
     user: (_, { id }) => find(users, { id: id }),
+    stats: () => Stat.findAll(),
   }
 }

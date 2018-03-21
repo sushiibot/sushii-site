@@ -2,6 +2,12 @@ const { makeExecutableSchema } = require('graphql-tools')
 const resolvers = require('./resolvers')
 
 const typeDefs = `
+  type Stat {
+    stat_name: String!
+    count: String!
+    category: String!
+  }
+
   type User {
     id: Float!
     avatar: String!
@@ -30,6 +36,7 @@ const typeDefs = `
   type Query {
     guilds: [Guild]
     user(id: Float!): User
+    stats: [Stat]
   }
 `
 
