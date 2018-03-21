@@ -67,6 +67,6 @@ module.exports = {
   Query: {
     guilds: () => guilds,
     user: (_, { id }) => find(users, { id: id }),
-    stats: () => Stat.findAll(),
+    stats: () => Stat.findAll({ order: [['stat_name', 'DESC']] }),
   }
 }
