@@ -48,6 +48,13 @@ app.prepare()
       ctx.redirect(process.env.INVITE_URL)
     })
 
+    // Dynamic Next.js Pages
+    router.get('/leaderboard/:id', async ctx => {
+      const queryParams = { guild_id: ctx.params.id }
+      app.render(ctx.req, ctx.res, '/leaderboard', queryParams)
+      ctx.respond = false
+    })
+
     // Next.js Pages
     router.get('*', async ctx => {
       await handle(ctx.req, ctx.res)

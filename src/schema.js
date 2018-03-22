@@ -8,35 +8,18 @@ const typeDefs = `
     category: String!
   }
 
-  type User {
-    id: Float!
-    avatar: String!
-    user_name: String!
-    discriminator: Int!
-  }
-
-  type Guild {
-    guild_name: String!
-    icon: String
-    member_count: Int!
-    owner_id: Float!
-  }
-
-  type Channel {
-    id: Float!
-    category_id: Int
-    guild_id: Float!
-    kind: String!
-    channel_name: String!
-    position: Int!
-    topic: String!
-    nsfw: Boolean
+  type Rank {
+    user_id: String!
+    msg_all_time: String!
+    msg_month: String!
+    msg_week: String!
+    msg_day: String!
+    last_msg: String!
   }
 
   type Query {
-    guilds: [Guild]
-    user(id: Float!): User
     stats: [Stat]
+    ranks(guild_id: String): [Rank]
   }
 `
 
