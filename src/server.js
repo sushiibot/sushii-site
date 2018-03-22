@@ -6,6 +6,7 @@ const Router = require('koa-router')
 const Body = require('koa-bodyparser')
 const { graphqlKoa } = require('apollo-server-koa')
 const { graphiqlKoa } = require('apollo-server-koa')
+const { ApolloEngine } = require('apollo-engine')
 const schema = require('./schema')
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -20,13 +21,18 @@ app.prepare()
 
     server.use(Body())
 
-    router.post('/graphql', graphqlKoa({ schema: schema }))
-    router.get('/graphql', graphqlKoa({ schema: schema }))
+    router.post('/graphql', graphqlKoa({
+      schema: schema,
+      tracing: true,
+      cacheControl: true,
+    }))
 
-    // invite url
-    router.get('/invite', async ctx => {
-      ctx.redirect(process.env.INVITE_URL)
-    })
+    router.get('/graphql', graphqlKoa({
+      schema: schema,
+      tracing: true,
+      cacheControl: true,
+    }))
+
 
     router.get(
       '/graphiql',
@@ -34,6 +40,11 @@ app.prepare()
         endpointURL: '/graphql', // a POST endpoint that GraphiQL will make the actual requests to
       })
     )
+
+    // invite url
+    router.get('/invite', async ctx => {
+      ctx.redirect(process.env.INVITE_URL)
+    })
 
     router.get('*', async ctx => {
       await handle(ctx.req, ctx.res)
@@ -48,8 +59,16 @@ app.prepare()
 
     server.use(router.routes())
     server.use(router.allowedMethods())
-    server.listen(port, (err) => {
-      if (err) throw err
+
+    // Initialize engine with your API key
+    const engine = new ApolloEngine({
+      apiKey: process.env.APOLLO_ENGINE_KEY
+    })
+
+    engine.listen({
+      port: port,
+      koaApp: server,
+    }, () => {
       console.log(`> Ready on http://localhost:${port}`)
     })
   })
