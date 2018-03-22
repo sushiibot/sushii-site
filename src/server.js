@@ -50,6 +50,12 @@ app.prepare()
 
     // Dynamic Next.js Pages
     router.get('/leaderboard/:id', async ctx => {
+      // Redirect global leaderboard with trailing slash
+      if (!ctx.params.id) {
+        ctx.redirect('/leaderboard')
+        ctx.status = 301
+      }
+      
       const queryParams = { guild_id: ctx.params.id }
       app.render(ctx.req, ctx.res, '/leaderboard', queryParams)
       ctx.respond = false
