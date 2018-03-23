@@ -3,29 +3,6 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-const RanksQuery = gql`
-  query GuildRanks($guild_id: String) {
-    guild(id: $guild_id) {
-      guild_name
-      icon
-      member_count
-      owner_id
-    }
-    ranks(guild_id: $guild_id) {
-      user_id
-      user {
-        avatar
-        user_name
-        discriminator
-      }
-      msg_all_time
-      msg_month
-      msg_week
-      msg_day
-    }
-  }
-`
-
 function pad(x) {
   return ('0000' + x).slice(-4)
 }
@@ -46,7 +23,7 @@ function get_level(xp) {
 
 class XpProgress extends React.Component {
   static propTypes = {
-    xp: PropTypes.number.isRequired,
+    xp: PropTypes.string.isRequired,
   }
 
   render() {
@@ -74,20 +51,40 @@ class XpProgress extends React.Component {
   }
 }
 
+const Loader = () => (
+  <div className="leaderboard-spinner">
+    <div className="rect1"></div>
+    <div className="rect2"></div>
+    <div className="rect3"></div>
+    <div className="rect4"></div>
+    <div className="rect5"></div>
+  </div>
+)
+
 class Ranks extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
   }
 
   render() {
-    console.log(this.props)
-    const { data: { error, guild, ranks } } = this.props
+    let { data: { error, guild, ranks, globalRanks } } = this.props
 
     if (error) {
       console.error(error)
-      return <div>Error loading ranks</div>
+      return <h1 className='title'>Error loading ranks :(</h1>
     }
+
+    // check if this is the global page, reassign ranks to global
+    if (!ranks && globalRanks) {
+      ranks = globalRanks
+    }
+
     if (ranks) {
+      // Check if Guild is found
+      if (!guild && !ranks.length) {
+        return <h1 className='title'>Guild not found. :(</h1>
+      }
+
       return (
         <div>
           <h1 className='title'>Leaderboard - { guild ? guild.guild_name : 'Global'}</h1>
@@ -128,14 +125,71 @@ class Ranks extends React.Component {
       )
     }
 
-    return <div>Loading</div>
+    return <Loader />
   }
 }
 
-export default graphql(RanksQuery, {
-  options: (props) => ({
-    variables: {
-      guild_id: props.url.query.guild_id,
+const RanksQuery = gql`
+  query GuildRanks($guild_id: String) {
+    guild(id: $guild_id) {
+      guild_name
+      icon
+      member_count
+      owner_id
     }
-  })
-})(Ranks)
+    ranks(guild_id: $guild_id) {
+      user_id
+      user {
+        avatar
+        user_name
+        discriminator
+      }
+      msg_all_time
+      msg_month
+      msg_week
+      msg_day
+    }
+  }
+`
+
+const GlobalRanksQuery = gql`
+  query GlobalRanks {
+    globalRanks {
+      user {
+        avatar
+        user_name
+        discriminator
+      }
+      msg_all_time
+    }
+  }
+`
+
+// HOC? for different GraphQL queries for global / guild leaderboards
+export default class WithQuery extends React.Component {
+  static propTypes = {
+    url: PropTypes.object.isRequired,
+  }
+
+  render() {
+    const url = this.props.url
+
+    // default global ranks
+    let query = GlobalRanksQuery
+    let options = {}
+
+    if (url.query.guild_id) {
+      query = RanksQuery
+      options = {
+        options: {
+          variables: {
+            guild_id: url.query.guild_id,
+          }
+        }
+      }
+    }
+    const Wrapped = graphql(query, options)(Ranks)
+
+    return <Wrapped {...this.props} />
+  }
+}

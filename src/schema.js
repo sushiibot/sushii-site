@@ -14,10 +14,16 @@ joinMonsterAdapt(schema, {
       stats: {
         orderBy: {
           stat_name: 'asc'
-        }
+        } 
       },
       ranks: {
         where: (table, { guild_id }) => `${table}.guild_id = ${guild_id}`,
+        orderBy: {
+          msg_all_time: 'desc'
+        },
+        limit: 50,
+      },
+      globalRanks: {
         orderBy: {
           msg_all_time: 'desc'
         },
@@ -50,6 +56,21 @@ joinMonsterAdapt(schema, {
       msg_week: { sqlColumn: 'msg_week' },
       msg_day: { sqlColumn: 'msg_day' },
       last_msg: { sqlColumn: 'last_msg' },
+    }
+  },
+  GlobalRank: {
+    sqlTable: `(
+      SELECT user_id, SUM(msg_all_time) AS msg_all_time
+      FROM levels
+      GROUP BY user_id
+    )`,
+    uniqueKey: 'user_id',
+    fields: {
+      user_id: { sqlColumn: 'user_id' },
+      user: {
+        sqlJoin: (globalTable, userTable) => `${globalTable}.user_id = ${userTable}.id`,
+      },
+      msg_all_time: { sqlColumn: 'msg_all_time' },
     }
   },
   CachedUser: {

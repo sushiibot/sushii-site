@@ -20,8 +20,17 @@ pool.query('SELECT 1 + 1 AS result')
   .then(() => console.log('[PG] Connection has been established successfully.'))
   .catch(err => console.error('[PG] Unable to connect to the database:', err))
 
+process.on('SIGINT', async () => {
+  console.log('Shutting down...')
+  await pool.end()
+  console.log('[PG] Connection pool drained.')
+  console.log('Goodbye.')
+  process.exit(0)
+})
+
 function joinMonsterQuery(resolveInfo, ctx) {
   return joinMonster(resolveInfo, ctx, sql => {
+    console.log(sql)
     return pool.query(sql)
   }, { dialect: 'pg' })
 }
@@ -32,6 +41,9 @@ const resolvers = {
       return joinMonsterQuery(resolveInfo, ctx)
     },
     ranks(parent, args, ctx, resolveInfo) {
+      return joinMonsterQuery(resolveInfo, ctx)
+    },
+    globalRanks(parent, args, ctx, resolveInfo) {
       return joinMonsterQuery(resolveInfo, ctx)
     },
     guild(parent, args, ctx, resolveInfo) {

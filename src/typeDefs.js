@@ -22,6 +22,12 @@ module.exports = `
     last_msg: String
   }
 
+  type GlobalRank {
+    user_id: String!
+    user: CachedUser!
+    msg_all_time: String!
+  }
+
   type CachedGuild {
     id: String!
     guild_name: String!
@@ -33,6 +39,7 @@ module.exports = `
   type Query {
     stats: [Stat]
     ranks(guild_id: String): [Rank]
+    globalRanks: [GlobalRank]
     user(id: String!): CachedUser
     guild(id: String): CachedGuild
   }
