@@ -3,15 +3,31 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+/**
+ * Zero pads a number, used for discriminators as they are
+ * provided as numbers but should be displayed with padded zeros
+ * 
+ * @param {int} x - Number to pad
+ */
 function pad(x) {
   return ('0000' + x).slice(-4)
 }
 
-// Calculate rank from XP client side, ported from bot rust
+/**
+ * Gets the required amount of total XP for the next level.
+ * Ported from bot rust code to be used client side
+ * 
+ * @param {int} level - Level to get XP required for
+ */
 function next_level(level) {
   return 50 * (Math.pow(level, 2)) - (50 * level)
 }
 
+/**
+ * Gets the current level of a user from their XP
+ * 
+ * @param {int} xp - XP to calculate a level from
+ */
 function get_level(xp) {
   let level = 0
   while (next_level(level + 1) <= xp) {
@@ -61,6 +77,11 @@ const Loader = () => (
   </div>
 )
 
+/**
+ * Gets the colour (gold, silver, bronze) for a ranking position
+ * 
+ * @param {int} i - Ranking position 
+ */
 function getRankColor(i) {
   if (i == 0) {
     return '#fee423'
@@ -71,6 +92,15 @@ function getRankColor(i) {
   } else {
     return '#818092'
   }
+}
+
+/**
+ * Converts a user's avatar url to use jpg and removes url parameters
+ * 
+ * @param {string} url - A raw avatar url
+ */
+function cleanAvatarUrl(url) {
+  return url.split('?')[0].replace('webp', 'jpg').replace('gif', 'jpg')
 }
 
 class Ranks extends React.Component {
@@ -116,7 +146,7 @@ class Ranks extends React.Component {
                       { '#' + (i + 1) }
                     </span>
                     <img 
-                      src={rank.user.avatar.replace('webp', 'jpg').replace('gif', 'jpg')} 
+                      src={ cleanAvatarUrl(rank.user.avatar) } 
                       style={{ height: '60px', borderRadius: '50%', margin: '10px 15px 10px 15px' }}
                     />
                     { rank.user.user_name }<span className='has-text-grey'>#{ pad(rank.user.discriminator) }</span>
@@ -181,7 +211,7 @@ const GlobalRanksQuery = gql`
 // HOC? for different GraphQL queries for global / guild leaderboards
 export default class WithQuery extends React.Component {
   static propTypes = {
-    url: PropTypes.object.isRequired,
+    url: PropTypes.object,
   }
 
   render() {
