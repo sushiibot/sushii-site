@@ -30,7 +30,6 @@ process.on('SIGINT', async () => {
 
 function joinMonsterQuery(resolveInfo, ctx) {
   return joinMonster(resolveInfo, ctx, sql => {
-    console.log(sql)
     return pool.query(sql)
   }, { dialect: 'pg' })
 }
