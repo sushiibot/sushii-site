@@ -3,7 +3,7 @@ const commands = {
     {
       name: 'profile',
       desc: 'Shows your profile.',
-      aliases: ['rank'],
+      aliases: ['rank', 'rakn', 'rnak'],
       usage: '(@mention or ID)',
     },
     {
