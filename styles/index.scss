@@ -37,4 +37,16 @@ $menu-item-active-color: $link;
 
 $code: $link;
 
+
+$table-color: $text;
+$table-cell-heading-color: $text;
+$table-head-cell-color: $text;
+
+$table-cell-border: 1px solid rgba($white, 0.1);
+
+$table-background-color: $dark-grey;
+$table-row-hover-background-color: lighten($dark-grey, 4%);
+$table-striped-row-even-background-color: lighten($dark-grey, 2%);
+$table-striped-row-even-hover-background-color: lighten($dark-grey, 4%);
+
 @import '~bulma/bulma';
