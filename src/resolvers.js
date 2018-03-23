@@ -1,6 +1,5 @@
+const { Pool }    = require('pg')
 const joinMonster = require('join-monster').default
-
-const { Pool } = require('pg')
 
 // create a new connection pool
 const pool = new Pool({
@@ -10,11 +9,16 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000,
 })
 
+// Listen for database errors
+pool.on('error', err => {
+  console.error('Unexpected error on idle client: ', err)
+  process.exit(-1)
+})
+
 // check postgres connection
 pool.query('SELECT 1 + 1 AS result')
   .then(() => console.log('[PG] Connection has been established successfully.'))
-  .catch(e => console.error('[PG] Unable to connect to the database:', e))
-
+  .catch(err => console.error('[PG] Unable to connect to the database:', err))
 
 function joinMonsterQuery(resolveInfo, ctx) {
   return joinMonster(resolveInfo, ctx, sql => {
