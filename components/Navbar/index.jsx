@@ -110,6 +110,7 @@ class Navbar extends React.Component {
 
           <div id='navBar' className={navBarClasses}>
             <NavbarItem href='/about' name='About' />
+            <NavbarItem href='/leaderboard' name='Leaderboard' />
             <div className='navbar-start'>
               <div className='navbar-item has-dropdown is-hoverable'>
                 <NavbarLink href='/commands' name='Commands' />
