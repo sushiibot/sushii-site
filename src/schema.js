@@ -1,7 +1,7 @@
 const { makeExecutableSchema } = require('graphql-tools')
-const joinMonsterAdapt = require('join-monster-graphql-tools-adapter')
-const resolvers = require('./resolvers')
-const typeDefs = require('./typeDefs')
+const joinMonsterAdapt         = require('join-monster-graphql-tools-adapter')
+const resolvers                = require('./resolvers')
+const typeDefs                 = require('./typeDefs')
 
 const schema = makeExecutableSchema({
   typeDefs,
