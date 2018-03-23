@@ -61,6 +61,18 @@ const Loader = () => (
   </div>
 )
 
+function getRankColor(i) {
+  if (i == 0) {
+    return '#fee423'
+  } else if (i == 1) {
+    return '#deecec'
+  } else if (i == 2) {
+    return '#e4a364'
+  } else {
+    return '#818092'
+  }
+}
+
 class Ranks extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
@@ -100,12 +112,13 @@ class Ranks extends React.Component {
               {ranks.map((rank, i) => (
                 <tr key={i} className='leaderboard-row'>
                   <th>
-                    { '#' + (i + 1) }
+                    <span style={{ color: getRankColor(i) }}>
+                      { '#' + (i + 1) }
+                    </span>
                     <img 
                       src={rank.user.avatar.replace('webp', 'jpg').replace('gif', 'jpg')} 
                       style={{ height: '60px', borderRadius: '50%', margin: '10px 15px 10px 15px' }}
                     />
-
                     { rank.user.user_name }<span className='has-text-grey'>#{ pad(rank.user.discriminator) }</span>
                   </th>
                   <td>
