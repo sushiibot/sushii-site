@@ -50,19 +50,19 @@ app.prepare()
 
     // Dynamic Next.js Pages
     router.get('/leaderboard/:id', async ctx => {
-      if (ctx.request.url == '/leaderboard/') {
-        // remove trailing slash
-        ctx.redirect('/leaderboard')
-        ctx.status = 301
-      } else {
-        const queryParams = { guild_id: ctx.params.id }
-        app.render(ctx.req, ctx.res, '/leaderboard', queryParams)
-      }
+      console.log('/leaderboard/:id', ctx)
+      console.log(ctx.params)
+      const queryParams = { guild_id: ctx.params.id }
+      app.render(ctx.req, ctx.res, '/leaderboard', queryParams)
       ctx.respond = false
     })
 
+
     // Next.js Pages
     router.get('*', async ctx => {
+      ctx.url = ctx.url.replace(/\/$/, '')
+      if (ctx.url == '') { ctx.url = '/' }
+      
       await handle(ctx.req, ctx.res)
       ctx.respond = false
     })
