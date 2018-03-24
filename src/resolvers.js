@@ -1,5 +1,6 @@
 const { Pool }    = require('pg')
 const joinMonster = require('join-monster').default
+const dev         = process.env.NODE_ENV !== 'production'
 
 // create a new connection pool
 const pool = new Pool({
@@ -30,6 +31,9 @@ process.on('SIGINT', async () => {
 
 function joinMonsterQuery(resolveInfo, ctx) {
   return joinMonster(resolveInfo, ctx, sql => {
+    // Log SQL queries to console if dev
+    if (dev) console.log(sql)
+
     return pool.query(sql)
   }, { dialect: 'pg' })
 }
