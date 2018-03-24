@@ -1,4 +1,5 @@
 import React from 'react'
+import LazyLoad from 'react-lazyload'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -145,10 +146,16 @@ class Ranks extends React.Component {
                     <span style={{ color: getRankColor(i) }}>
                       { '#' + (i + 1) }
                     </span>
-                    <img 
-                      src={ cleanAvatarUrl(rank.user.avatar) } 
-                      style={{ height: '60px', borderRadius: '50%', margin: '10px 15px 10px 15px' }}
-                    />
+                    <div className='leaderboard-avatar'
+                      style={{ display: 'inline-block', width: '60px', height: '60px', margin: '10px 15px 10px 15px' }}>
+                      <LazyLoad height='60px' once>
+                        <img
+                          className='leaderboard-avatar-image'
+                          src={cleanAvatarUrl(rank.user.avatar)}
+                          style={{ height: '60px', borderRadius: '50%' }}
+                        />
+                      </LazyLoad>
+                    </div>
                     { rank.user.user_name }<span className='has-text-grey'>#{ pad(rank.user.discriminator) }</span>
                   </th>
                   <td>
