@@ -49,4 +49,7 @@ $table-row-hover-background-color: lighten($dark-grey, 4%);
 $table-striped-row-even-background-color: lighten($dark-grey, 2%);
 $table-striped-row-even-hover-background-color: lighten($dark-grey, 4%);
 
+$tooltip-background-color: $light-grey;
+
 @import '~bulma/bulma';
+@import '~bulma-tooltip/dist/bulma-tooltip';

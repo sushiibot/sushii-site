@@ -143,23 +143,29 @@ class Ranks extends React.Component {
               {ranks.map((rank, i) => (
                 <tr key={i} className='leaderboard-row'>
                   <td style={{ whiteSpace: 'nowrap' }}>
-                    <span style={{ color: getRankColor(i) }}>
-                      { '#' + (i + 1) }
-                    </span>
-                    <div className='leaderboard-avatar'
-                      style={{ display: 'inline-block', width: '60px', height: '60px', margin: '10px 15px 10px 15px' }}>
-                      <LazyLoad height='60px' once>
-                        <img
-                          className='leaderboard-avatar-image'
-                          src={rank.user ? cleanDiscordImage(rank.user.avatar) : 'https://cdn.discordapp.com/embed/avatars/0.png'}
-                          style={{ height: '60px', borderRadius: '50%' }}
-                        />
-                      </LazyLoad>
+                    <div
+                      className={ !rank.user && 'tooltip is-tooltip-top' }
+                      data-tooltip={ !rank.user && 'User not cached, check again later.'}>
+                      <span style={{ color: getRankColor(i) }}>
+                        {'#' + (i + 1)}
+                      </span>
+                      <div
+                        className='leaderboard-avatar tooltip'
+                        style={{ display: 'inline-block', width: '60px', height: '60px', margin: '10px 15px 10px 15px' }}>
+                        <LazyLoad height='60px' once>
+                          <img
+                            className='leaderboard-avatar-image'
+                            src={rank.user ? cleanDiscordImage(rank.user.avatar) : 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                            style={{ height: '60px', borderRadius: '50%' }}
+                          />
+                        </LazyLoad>
+                      </div>
+                      {rank.user ? rank.user.user_name : 'unknown'}
+                      <span
+                        className='has-text-grey'>
+                        #{rank.user ? pad(rank.user.discriminator) : '0000'}
+                      </span>
                     </div>
-                    { rank.user ? rank.user.user_name : 'unknown' }
-                    <span className='has-text-grey'>
-                      #{ rank.user ? pad(rank.user.discriminator) : '0000' }
-                    </span>
                   </td>
                   <td style={{ width: '50%', minWidth: '200px' }}>
                     <XpProgress xp={rank.msg_all_time} />
