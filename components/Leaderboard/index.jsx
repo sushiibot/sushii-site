@@ -142,7 +142,7 @@ class Ranks extends React.Component {
             <tbody>
               {ranks.map((rank, i) => (
                 <tr key={i} className='leaderboard-row'>
-                  <td style={{ whiteSpace: 'nowrap' }}>
+                  <td className='leaderboard-user'>
                     <span style={{ color: getRankColor(i) }}>
                       {'#' + (i + 1)}
                     </span>
@@ -160,7 +160,7 @@ class Ranks extends React.Component {
                     <div
                       className={ !rank.user && 'tooltip is-tooltip-top' }
                       data-tooltip={ !rank.user && 'User not cached, check again later.'}
-                      style={{ display: 'inline-block' }}>
+                      style={{ display: 'inline' }}>
                       {rank.user ? rank.user.user_name : 'unknown'}
                       <span
                         className='has-text-grey'>
@@ -168,12 +168,12 @@ class Ranks extends React.Component {
                       </span>
                     </div>
                   </td>
-                  <td style={{ width: '50%', minWidth: '200px' }}>
+                  <td className='leaderboard-xp'>
                     <XpProgress xp={rank.msg_all_time} />
-                  </td>
-                  <td>
-                    <p className='heading'>LEVEL</p>
-                    <p className='title'>{ get_level(rank.msg_all_time) }</p>
+                    <div className='leaderboard-level'>
+                      <p className='heading'>LEVEL</p>
+                      <p className='title'>{get_level(rank.msg_all_time)}</p>
+                    </div>
                   </td>
                 </tr>
               ))}

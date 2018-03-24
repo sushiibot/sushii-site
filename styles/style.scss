@@ -111,6 +111,41 @@
 
 .leaderboard-title {
   display: inline-block;
+  margin-bottom: 20px;
+}
+
+.leaderboard-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .leaderboard-user {
+    width: 100%;
+    max-width: 40%;
+    min-width: 384px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: none;
+  }
+
+  .leaderboard-xp {
+    min-width: 50%;
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    border: none;
+
+    div {
+      width: 100%;
+    }
+
+    .leaderboard-level {
+      margin-left: 20px;
+      flex: 0 0 0;
+    }
+  }
 }
 
 .xp_progress {
