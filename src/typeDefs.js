@@ -37,7 +37,7 @@ module.exports = `
   }
 
   type Query {
-    stats: [Stat]
+    stats(filter: [String]): [Stat]
     ranks(guild_id: String): [Rank]
     globalRanks: [GlobalRank]
     user(id: String!): CachedUser

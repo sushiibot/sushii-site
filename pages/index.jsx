@@ -1,7 +1,9 @@
 import React from 'react'
 import Layout from '../layouts/'
+import withData from '../lib/withData'
+import Stats from '../components/Stats'
 
-const IndexPage = () => (
+export default withData(() => (
   <Layout>
     <div>
       <section className='hero is-fullheight'>
@@ -34,9 +36,12 @@ const IndexPage = () => (
             </div>
           </div>
         </div>
+        <div className='hero-foot'>
+          <nav className='level' style={{ paddingBottom: '50px' }}>
+            <Stats />
+          </nav>
+        </div>
       </section>
     </div>
   </Layout>
-)
-
-export default IndexPage
+))
