@@ -130,7 +130,7 @@ class Ranks extends React.Component {
 
       return (
         <div>
-          <h1 className='title'>Leaderboard - { guild ? guild.guild_name : 'Global'}</h1>
+          <h1 className='title'>{ guild ? guild.guild_name : 'Global'} Leaderboard</h1>
           <table className='table is-fullwidth is-striped is-hoverable'>
             <thead>
               <tr>
