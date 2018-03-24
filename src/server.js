@@ -50,8 +50,6 @@ app.prepare()
 
     // Dynamic Next.js Pages
     router.get('/leaderboard/:id', async ctx => {
-      console.log('/leaderboard/:id', ctx)
-      console.log(ctx.params)
       const queryParams = { guild_id: ctx.params.id }
       app.render(ctx.req, ctx.res, '/leaderboard', queryParams)
       ctx.respond = false
