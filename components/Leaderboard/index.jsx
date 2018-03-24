@@ -60,9 +60,9 @@ class XpProgress extends React.Component {
     }
 
     return (
-      <div>
-        <progress className="progress is-link is-small xp_progress" value={ xp_percentage } max="100">{ xp_percentage }</progress>
-        <span className='has-text-grey-light'>{ next_level_xp_progress } / { next_level_xp_required }</span>
+      <div className='xp_progress'>
+        <div className='xp_progress' style={{ width: xp_percentage + '%' }}></div>
+        <span className='has-text-grey-light'>{next_level_xp_progress} / {next_level_xp_required}</span>
       </div>
     )
   }
@@ -96,11 +96,11 @@ function getRankColor(i) {
 }
 
 /**
- * Converts a user's avatar url to use jpg and removes url parameters
+ * Converts a user or guild image url to use jpg and removes url parameters
  * 
- * @param {string} url - A raw avatar url
+ * @param {string} url - A raw image url
  */
-function cleanAvatarUrl(url) {
+function cleanDiscordImage(url) {
   return url.split('?')[0].replace('webp', 'jpg').replace('gif', 'jpg')
 }
 
@@ -130,7 +130,10 @@ class Ranks extends React.Component {
 
       return (
         <div>
-          <h1 className='title'>{ guild ? guild.guild_name : 'Global'} Leaderboard</h1>
+          <div className='guild-info'>
+            { guild && <img className='guild-icon' src={ cleanDiscordImage(guild.icon) } alt={ guild.guild_name } /> }
+            <h1 className='title leaderboard-title'>{ guild ? guild.guild_name : 'Global'} Leaderboard</h1>
+          </div>
           <table className='table is-fullwidth is-striped is-hoverable'>
             <thead>
               <tr>
@@ -142,7 +145,7 @@ class Ranks extends React.Component {
             <tbody>
               {ranks.map((rank, i) => (
                 <tr key={i} className='leaderboard-row'>
-                  <th>
+                  <td style={{ whiteSpace: 'nowrap' }}>
                     <span style={{ color: getRankColor(i) }}>
                       { '#' + (i + 1) }
                     </span>
@@ -151,7 +154,7 @@ class Ranks extends React.Component {
                       <LazyLoad height='60px' once>
                         <img
                           className='leaderboard-avatar-image'
-                          src={rank.user ? cleanAvatarUrl(rank.user.avatar) : 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                          src={rank.user ? cleanDiscordImage(rank.user.avatar) : 'https://cdn.discordapp.com/embed/avatars/0.png'}
                           style={{ height: '60px', borderRadius: '50%' }}
                         />
                       </LazyLoad>
@@ -160,8 +163,8 @@ class Ranks extends React.Component {
                     <span className='has-text-grey'>
                       #{ rank.user ? pad(rank.user.discriminator) : '0000' }
                     </span>
-                  </th>
-                  <td>
+                  </td>
+                  <td style={{ width: '50%', minWidth: '200px' }}>
                     <XpProgress xp={rank.msg_all_time} />
                   </td>
                   <td>

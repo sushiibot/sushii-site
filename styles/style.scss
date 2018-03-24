@@ -97,10 +97,37 @@
     to   { opacity: 1; }
 }
 
+.guild-info {
+  display: flex;
+  align-items: center;
+}
+
+.guild-icon {
+  border-radius: 50%;
+  height: 75px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.leaderboard-title {
+  display: inline-block;
+}
+
 .xp_progress {
   display: inline-block;
+  position: relative;
+  height: 10px;
+  width: 100%;
   background-color: #383b53;
   margin-bottom: 0 !important;
+  border-radius: 5px;
+}
+
+.xp_progress > div {
+  display: block;
+  height: 100%;
+  position: relative;
+  background-color: #49baff;
 }
 
 // http://tobiasahlin.com/spinkit/
