@@ -151,12 +151,15 @@ class Ranks extends React.Component {
                       <LazyLoad height='60px' once>
                         <img
                           className='leaderboard-avatar-image'
-                          src={cleanAvatarUrl(rank.user.avatar)}
+                          src={rank.user ? cleanAvatarUrl(rank.user.avatar) : 'https://cdn.discordapp.com/embed/avatars/0.png'}
                           style={{ height: '60px', borderRadius: '50%' }}
                         />
                       </LazyLoad>
                     </div>
-                    { rank.user.user_name }<span className='has-text-grey'>#{ pad(rank.user.discriminator) }</span>
+                    { rank.user ? rank.user.user_name : 'unknown' }
+                    <span className='has-text-grey'>
+                      #{ rank.user ? pad(rank.user.discriminator) : '0000' }
+                    </span>
                   </th>
                   <td>
                     <XpProgress xp={rank.msg_all_time} />

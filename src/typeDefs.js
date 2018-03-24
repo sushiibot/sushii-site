@@ -14,7 +14,7 @@ module.exports = `
 
   type Rank {
     user_id: String!
-    user: CachedUser!
+    user: CachedUser
     msg_all_time: String!
     msg_month: String
     msg_week: String
@@ -24,7 +24,7 @@ module.exports = `
 
   type GlobalRank {
     user_id: String!
-    user: CachedUser!
+    user: CachedUser
     msg_all_time: String!
   }
 
