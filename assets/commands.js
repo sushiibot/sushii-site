@@ -49,6 +49,10 @@ const commands = {
       desc: 'Shows top 10 users with most rep.',
       usage: '(global)',
     },
+    {
+      name: 'leaderboard',
+      desc: 'Get the URL for the guild leaderboard.',
+    },
   ],
   Notifications: [
     {
