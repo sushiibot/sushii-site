@@ -51,6 +51,10 @@ function getStatName(stat) {
   return statsInfo[stat].name
 }
 
+function formatNumber(num) {
+  return parseInt(num, 10).toLocaleString()
+}
+
 class Stats extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
@@ -68,8 +72,8 @@ class Stats extends React.Component {
         sorted.map((stat, i) => (
           <div className='level-item has-text-centered' key={i}>
             <div>
-              <p className="heading">{getStatName(stat.stat_name)}</p>
-              <p className="title">{stat.count}</p>
+              <p className="heading">{ getStatName(stat.stat_name) }</p>
+              <p className="title">{ formatNumber(stat.count) }</p>
             </div>
           </div>
         ))

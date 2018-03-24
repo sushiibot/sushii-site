@@ -60,9 +60,13 @@ class XpProgress extends React.Component {
     }
 
     return (
-      <div className='xp_progress'>
-        <div className='xp_progress' style={{ width: xp_percentage + '%' }}></div>
-        <span className='has-text-grey-light'>{next_level_xp_progress} / {next_level_xp_required}</span>
+      <div>
+        <p className='heading' style={{ marginBottom: 0, lineHeight: '50%', fontSize: '13px' }}>
+          { next_level_xp_progress.toLocaleString() }  / { next_level_xp_required.toLocaleString() } XP
+        </p>
+        <div className='xp_progress'>
+          <div className='xp_progress' style={{ width: xp_percentage + '%' }}></div>
+        </div>
       </div>
     )
   }
@@ -135,13 +139,6 @@ class Ranks extends React.Component {
             <h1 className='title leaderboard-title'>{ guild ? guild.guild_name : 'Global'} Leaderboard</h1>
           </div>
           <table className='table is-fullwidth is-striped is-hoverable'>
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>XP</th>
-                <th>Level</th>
-              </tr>
-            </thead>
             <tbody>
               {ranks.map((rank, i) => (
                 <tr key={i} className='leaderboard-row'>
@@ -168,9 +165,8 @@ class Ranks extends React.Component {
                     <XpProgress xp={rank.msg_all_time} />
                   </td>
                   <td>
-                    <span className='has-text-grey-light'>LEVEL</span>
-                    <br/>
-                    <b>{ get_level(rank.msg_all_time) }</b>
+                    <p className='heading'>LEVEL</p>
+                    <p className='title'>{ get_level(rank.msg_all_time) }</p>
                   </td>
                 </tr>
               ))}
