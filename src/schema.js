@@ -1,5 +1,6 @@
 const { makeExecutableSchema } = require('graphql-tools')
 const joinMonsterAdapt         = require('join-monster-graphql-tools-adapter')
+const escape                   = require('pg-escape')
 const resolvers                = require('./resolvers')
 const typeDefs                 = require('./typeDefs')
 
@@ -12,12 +13,14 @@ joinMonsterAdapt(schema, {
   Query: {
     fields: {
       stats: {
+        // Searches for those that are in the filter array
+        where: (table, { filter }) => escape(`${table}.stat_name IN %L`, filter),
         orderBy: {
           stat_name: 'asc'
         } 
       },
       ranks: {
-        where: (table, { guild_id }) => `${table}.guild_id = ${guild_id}`,
+        where: (table, { guild_id }) => escape(`${table}.guild_id = %L`, guild_id),
         orderBy: {
           msg_all_time: 'desc'
         },
@@ -30,7 +33,7 @@ joinMonsterAdapt(schema, {
         limit: 50,
       },
       guild: {
-        where: (table, { id }) => `${table}.id = ${id}`
+        where: (table, { id }) => escape(`${table}.id = %L`, id)
       },
     }
   },
