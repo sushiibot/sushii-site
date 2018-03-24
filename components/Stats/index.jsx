@@ -57,7 +57,6 @@ class Stats extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const { data: { error, stats } } = this.props
 
     if (error) return <div>Error loading stats</div>
