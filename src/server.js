@@ -49,15 +49,15 @@ app.prepare()
     })
 
     // Dynamic Next.js Pages
-    router.get('/leaderboard', '/leaderboard/:id', async ctx => {
-      // Redirect global leaderboard with trailing slash
-      if (!ctx.params.id) {
+    router.get('/leaderboard/:id', async ctx => {
+      if (ctx.request.url == '/leaderboard/') {
+        // remove trailing slash
         ctx.redirect('/leaderboard')
         ctx.status = 301
+      } else {
+        const queryParams = { guild_id: ctx.params.id }
+        app.render(ctx.req, ctx.res, '/leaderboard', queryParams)
       }
-
-      const queryParams = { guild_id: ctx.params.id }
-      app.render(ctx.req, ctx.res, '/leaderboard', queryParams)
       ctx.respond = false
     })
 
