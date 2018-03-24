@@ -150,7 +150,7 @@ class Ranks extends React.Component {
                         {'#' + (i + 1)}
                       </span>
                       <div
-                        className='leaderboard-avatar tooltip'
+                        className='leaderboard-avatar'
                         style={{ display: 'inline-block', width: '60px', height: '60px', margin: '10px 15px 10px 15px' }}>
                         <LazyLoad height='60px' once>
                           <img
