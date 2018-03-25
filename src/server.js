@@ -58,8 +58,15 @@ app.prepare()
 
     // Next.js Pages
     router.get('*', async ctx => {
-      ctx.url = ctx.url.replace(/\/$/, '')
-      if (ctx.url == '') { ctx.url = '/' }
+      // only remove trailing / if not a HMR url:
+      // /_next/on-demand-entries-ping?page=/
+      // otherwise this will cause index page to constantly reload
+      if (dev && !ctx.url.endsWith('page=/')) {
+        ctx.url = ctx.url.replace(/\/$/, '')
+        if (ctx.url == '') {
+          ctx.url = '/'
+        }
+      }
       
       await handle(ctx.req, ctx.res)
       ctx.respond = false
