@@ -42,7 +42,7 @@ class MessageBody extends React.Component {
 
       return (
         <div>
-          { image && <img src={ image } alt={ image } style={{ marginTop: '15px', width: '70%' }} /> }
+          { image && <img src={ image } alt={ image } style={{ marginTop: '15px', width: '100%', maxWidth: '400px' }} /> }
           { content && <div className='markup'>{ parse(content, true, {}, jumboify) }</div> }
         </div>
       )      
