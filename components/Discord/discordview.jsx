@@ -28,18 +28,24 @@ class MessageTimestamp extends React.Component {
 class MessageBody extends React.Component {
   static propTypes = {
     content: PropTypes.string,
+    image: PropTypes.string,
     isBot: PropTypes.bool,
   }
 
   render() {
-    const { content, isBot } = this.props
+    const { content, image, isBot } = this.props
 
-    if (content) {
+    if (content || image) {
       if (isBot) {
-        return <div className='markup'>{parseAllowLinks(content, true, {}, jumboify)}</div>
+        return <div className='markup'>{ parseAllowLinks(content, true, {}, jumboify) }</div>
       }
 
-      return <div className='markup'>{parse(content, true, {}, jumboify)}</div>
+      return (
+        <div>
+          { image && <img src={ image } alt={ image } style={{ marginTop: '15px', width: '70%' }} /> }
+          { content && <div className='markup'>{ parse(content, true, {}, jumboify) }</div> }
+        </div>
+      )      
     }
 
     return null
@@ -124,22 +130,23 @@ class DiscordMessage extends React.Component {
       const rand = Math.floor(Math.random() * (4 - 0 + 1)) + 0
       // this just prevents Warning: Prop `style` did not match.
       // const fake_rand = msg.content.length % 4
-      defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${rand}.png`
+      defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${ rand }.png`
     }
 
     return (
       <div className='message-group hide-overflow'>
-        <Avatar url={avatar ? avatar : defaultAvatar} />
+        <Avatar url={ avatar ? avatar : defaultAvatar } />
         <div className='comment'>
           <div className='discord-message first'>
-            <CozyMessageHeader username={username} isBot={isBot} />
+            <CozyMessageHeader username={ username } isBot={ isBot } />
             <div className='message-text'>
               <MessageBody
-                content={msg.content}
-                username={username}
+                content={ msg.content }
+                username={ username }
+                image={ msg.image }
               />
             </div>
-            {msg.embed && <Embed {...msg.embed} />}
+            { msg.embed && <Embed { ...msg.embed } /> }
           </div>
         </div>
       </div>
@@ -192,17 +199,19 @@ class DiscordInput extends React.Component {
 class DiscordMessages extends React.Component {
   static propTypes = {
     messages: PropTypes.array.isRequired,
-    position: PropTypes.number.isRequired,
     input: PropTypes.string,
   }
 
+  componentDidUpdate() {
+    this.el.scrollTop = this.el.scrollHeight
+  }
+
   render() {
-    let shownMessages = this.props.messages.slice(0, this.props.position)
     return (
       <DiscordViewWrapper>
-        <div className='discord-scroll'>
+        <div className='discord-scroll' ref={ (el) => { this.el = el } }>
           {
-            shownMessages.map((msg, i) => (
+            this.props.messages.map((msg, i) => (
               <DiscordMessage key={i} msg={msg.data} username={msg.username} avatar={msg.avatar} isBot={msg.isBot} />
             ))
           }

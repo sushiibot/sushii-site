@@ -1193,7 +1193,7 @@ $discord-border-radius: 5px;
 // discord input
 
 .discord-scroll {
-  height: 400px;
+  height: 500px;
   overflow-y: scroll;
 }
 
@@ -1201,6 +1201,7 @@ $discord-border-radius: 5px;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+  color: #fff;
   background-color: hsla(218,5%,47%,.3);
   border: none;
   border-radius: 5px;
