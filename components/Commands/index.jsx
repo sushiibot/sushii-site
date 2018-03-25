@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import commands from '../../assets/commands'
-import DiscordView from '../Discord/discordview'
+import { DiscordView } from '../Discord/discordview'
 
 import '../../styles/discord.scss'
 

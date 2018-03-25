@@ -33,18 +33,18 @@ class MessageBody extends React.Component {
 
   render() {
     const { content, isBot } = this.props
-    
+
     if (content) {
       if (isBot) {
         return <div className='markup'>{parseAllowLinks(content, true, {}, jumboify)}</div>
-      } 
-      
+      }
+
       return <div className='markup'>{parse(content, true, {}, jumboify)}</div>
     }
 
     return null
   }
-  
+
 }
 
 class CozyMessageHeader extends React.Component {
@@ -157,7 +157,7 @@ class DiscordView extends React.Component {
   }
 
   render() {
-    const {messages, username, avatar, botUsername, botAvatarUrl} = this.props
+    const { messages, username, avatar, botUsername, botAvatarUrl } = this.props
 
     return (
       <div className='w-100 h-100 br2 flex flex-column white overflow-hidden'>
@@ -170,5 +170,48 @@ class DiscordView extends React.Component {
   }
 }
 
+class DiscordInput extends React.Component {
+  static propTypes = {
+    input: PropTypes.string,
+  }
 
-export default DiscordView
+  render() {
+    return (
+      <form className='discord-form'>
+        <textarea
+          value={ this.props.input }
+          className='discord-text-area'
+          rows="1"
+          placeholder="Message #general"
+          spellCheck="false"/>
+      </form>
+    )
+  }
+}
+
+class DiscordMessages extends React.Component {
+  static propTypes = {
+    messages: PropTypes.array.isRequired,
+    position: PropTypes.number.isRequired,
+    input: PropTypes.string,
+  }
+
+  render() {
+    let shownMessages = this.props.messages.slice(0, this.props.position)
+    return (
+      <DiscordViewWrapper>
+        <div className='discord-scroll'>
+          {
+            shownMessages.map((msg, i) => (
+              <DiscordMessage key={i} msg={msg.data} username={msg.username} avatar={msg.avatar} isBot={msg.isBot} />
+            ))
+          }
+        </div>
+        <DiscordInput input={ this.props.input }/>
+      </DiscordViewWrapper>
+    )
+  }
+}
+
+
+export { DiscordView, DiscordMessages }

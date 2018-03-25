@@ -1189,3 +1189,62 @@ $discord-border-radius: 5px;
   color: #00b0f4;
   text-decoration: none
 }
+
+// discord input
+
+.discord-scroll {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.discord-text-area {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: hsla(218,5%,47%,.3);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: -0.025rem;
+  line-height:44px;
+  margin: 2px 2px 2px 0;
+  padding-left: 14px;
+  height: 44px;
+  outline: none;
+  resize: none;
+  width: 100%;
+  vertical-align: middle;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  line-height:44px;
+}
+::-webkit-input-placeholder { /* Webkit */
+  line-height:44px;
+}
+:-ms-input-placeholder { /* IE */
+  line-height:44px;
+}
+
+.flex-nowrap {
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.discord-form {
+  font-family: Whitney, Helvetica Neue, Helvetica, Arial, sans-serif;
+  border-top: 1px solid hsla(0,0%,100%,.04);
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  margin: 0 20px 20px 20px;
+  padding-top: 20px;
+  vertical-align: baseline;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

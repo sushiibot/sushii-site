@@ -27,7 +27,7 @@ const commands = {
       aliases: ['foshy', 'fwishy'],
       example: {
         command: {
-          content: '-fishy 170366273354596352',
+          content: '-fishy @Joshy',
         },
         response: {
           content: 'You caught 22 fishies for Joshy#0001! :fishy:',

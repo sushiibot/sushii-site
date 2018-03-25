@@ -20,6 +20,23 @@ $link-hover: $white;
 $warning: #f0fb8c;
 $danger: #fc4346;
 
+$button-color: $white;
+$button-background-color: none;
+$button-border-color: $white;
+
+$button-hover-color: $white;
+$button-hover-border-color: darken($white, 20%);
+
+$button-focus-color: darken($white, 20%);
+$button-focus-border-color: darken($white, 20%);
+
+$button-active-color: darken($white, 20%);
+$button-active-border-color: darken($white, 20%);
+
+$button-text-color: darken($white, 20%);
+$button-text-hover-background-color: darken($white, 20%);
+$button-text-hover-color: $white;
+
 $message-background-color: $dark-grey;
 $message-body-color: $white;
 $message-body-pre-background-color: $light-grey;
