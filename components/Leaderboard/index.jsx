@@ -172,7 +172,7 @@ class Ranks extends React.Component {
                     <XpProgress xp={rank.msg_all_time} />
                     <div className='leaderboard-level'>
                       <p className='heading'>LEVEL</p>
-                      <p className='title'>{get_level(rank.msg_all_time)}</p>
+                      <p className='title' style={{ wordBreak: 'normal' }}>{get_level(rank.msg_all_time)}</p>
                     </div>
                   </td>
                 </tr>
