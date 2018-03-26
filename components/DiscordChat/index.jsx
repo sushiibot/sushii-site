@@ -97,7 +97,6 @@ class DiscordChat extends React.Component {
   }
 
   async buildCommand() {
-    console.log(this.state.position)
     let newMsg = {
       data: messageList[this.state.position]['command'],
       ...users['invoker'],
