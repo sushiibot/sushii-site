@@ -202,8 +202,11 @@ class DiscordMessages extends React.Component {
     input: PropTypes.string,
   }
 
-  componentDidUpdate() {
-    this.el.scrollTop = this.el.scrollHeight
+  componentDidUpdate(prevProps) {
+    // only scroll when messages update, not typing
+    if (prevProps.messages.length !== this.props.messages.length) {
+      this.el.scrollTop = this.el.scrollHeight
+    }
   }
 
   render() {
