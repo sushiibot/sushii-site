@@ -416,6 +416,21 @@ const commands = {
       desc: 'Shows bot statistics.',
     },
   ],
+  Text: [
+    {
+      name: 'hug',
+      desc: 'Hug someone.  ლ(・ヮ・ლ)',
+      usage: '[someone]',
+      example: {
+        command: {
+          content: '-hug @Joshy',
+        },
+        response: {
+          content: '(っ・∀・）っ @joshy'
+        }
+      }
+    }
+  ],
   'Misc.': [
     {
       name: 'play',
