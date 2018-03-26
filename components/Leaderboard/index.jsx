@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import LazyLoad from 'react-lazyload'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
@@ -132,11 +133,16 @@ class Ranks extends React.Component {
         return <h1 className='title'>Guild not found. :(</h1>
       }
 
+      const pageTitle = (guild ? guild.guild_name : 'Global') + ' Leaderboard'
+
       return (
         <div>
           <div className='guild-info'>
             { guild && <img className='guild-icon' src={ cleanDiscordImage(guild.icon) } alt={ guild.guild_name } /> }
-            <h1 className='title leaderboard-title'>{ guild ? guild.guild_name : 'Global'} Leaderboard</h1>
+            <h1 className='title leaderboard-title'>{ pageTitle }</h1>
+            <Helmet>
+              <title>{ pageTitle + ' | sushii' }</title>
+            </Helmet>
           </div>
           <table className='table is-fullwidth is-striped is-hoverable'>
             <tbody>
