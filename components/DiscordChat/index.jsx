@@ -1,6 +1,13 @@
 import React from 'react'
 import { DiscordMessages } from '../Discord/discordview'
 
+const imagesToPreload = [
+  '/static/sushiiAvatar.jpg',
+  '/static/level.png',
+  '/static/lfm.jpg',
+  '/static/rv.png',
+]
+
 const users = {
   invoker: {
     username: 'Joshy',
@@ -63,6 +70,18 @@ const messageList = [
     }
   }
 ]
+
+class PreloadImages extends React.Component {
+  render() {
+    return (
+      <div style={{ visibility: 'hidden', width: '0', height: '0', overflow: 'hidden' }}>
+        {
+          imagesToPreload.map((img, i) => <img src={img} key={i} />)
+        }
+      </div>
+    )
+  }
+}
 
 class DiscordChat extends React.Component {
   constructor(props) {
@@ -144,6 +163,7 @@ class DiscordChat extends React.Component {
     return (
       <div className='discord-messages-wrapper'>
         <DiscordMessages messages={ this.state.messages } input={ this.state.input } />
+        <PreloadImages />
       </div>
     )
   }
