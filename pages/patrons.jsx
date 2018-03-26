@@ -9,35 +9,43 @@ const PatronPage = () => (
     <section className='hero is-fullheight'>
       <div className='hero-body'>
         <div className='container'>
-          <div className='columns is-centered'>
-            <div className='column is-one-third has-text-centered'>
-              <h1 className='title'>
-                Patrons
-              </h1>
-              <ul>
-                <b>$10</b>
-                <li>Mithy</li>
-                <br />
-                <b>$5</b>
-                <li>Merjpu</li>
-                <li>Joshy</li>
-                <br />
-                <b>$1</b>
-                <li>Jer</li>
-                <li>Rave</li>
-                <li>Code</li>
-                <li>Kaze</li>
-                <li>Jinnie</li>
-              </ul>
+          <h1 className='title is-1'>
+            Patrons
+          </h1>
+          <p style={{ margin: '20px 0 40px' }}>
+            Want to be on this list?
+            Support me on <a href='https://www.patreon.com/tzuwy' target='_blank' rel='noopener noreferrer'>Patreon</a>!
+            <br />
+            The funds will go towards hosting and improvements.
+          </p>
+          <div className='columns'>
+            <div className='column'>
+              <p className='has-text-weight-bold'>$10</p>
+              <p className='is-size-5'>Mithy</p>
               <span className='icon has-text-danger'>
                 <FontAwesomeIcon icon={['far', 'heart']} />
               </span>
-              <p style={{marginTop: '20px'}}>
-                Want to be on this list?
-                Support me on <a href='https://www.patreon.com/tzuwy' target='_blank' rel='noopener noreferrer'>Patreon</a>!
-                <br/>
-                The funds will go towards hosting and improvements.
-              </p>
+            </div>
+            <div className='column'>
+              <p className='has-text-weight-bold'>$5</p>
+              <p className='is-size-5'>Merjpu</p>
+              <p className='is-size-5'>Joshy</p>
+              <p className='is-size-5'>Doot</p>
+              <span className='icon has-text-danger'>
+                <FontAwesomeIcon icon={['far', 'heart']} />
+              </span>
+            </div>
+            <div className='column'>
+              <p className='has-text-weight-bold'>$1</p>
+              <p className='is-size-5'>Jer</p>
+              <p className='is-size-5'>Rave</p>
+              <p className='is-size-5'>Code</p>
+              <p className='is-size-5'>Kaze</p>
+              <p className='is-size-5'>Jinnie</p>
+              <p className='is-size-5'>Sekl</p>
+              <span className='icon has-text-danger'>
+                <FontAwesomeIcon icon={['far', 'heart']} />
+              </span>
             </div>
           </div>
         </div>
