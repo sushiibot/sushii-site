@@ -656,6 +656,11 @@ const commands = {
       desc: 'Lists the disabled channels.',
       permissions: 'MANAGE_GUILD'
     },
+    {
+      name: 'settings',
+      desc: 'Lists the current settings for this guild.',
+      permissions: 'MANAGE_GUILD'
+    },
   ],
   Gallery: [
     {
