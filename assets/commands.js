@@ -87,11 +87,12 @@ const commands = {
       }
     },
     {
-      name: 'reminder list',
+      name: 'reminders',
       desc: 'Shows your pending reminders.',
+      aliases: ['reminder list'],
       example: {
         command: {
-          content: '-reminder list',
+          content: '-reminders',
         },
         response: {
           content: 'You have 1 reminders:\
