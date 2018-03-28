@@ -641,7 +641,7 @@ const commands = {
     },
     {
       name: 'disablechannel',
-      desc: 'Disables a channel for commands.',
+      desc: 'Disables a channel for commands.  Those with MANAGE_GUILD permissions bypass channel disables.',
       usage: '[#channel or ID]',
       permissions: 'MANAGE_GUILD'
     },
