@@ -8,7 +8,8 @@ const session          = require('koa-session')
 const simpleOauth2     = require('simple-oauth2')
 const crypto           = require('crypto')
 const discord          = require('./discord')
-const debug            = require('debug')('server')
+const db               = require('./database')
+const crypt            = require('./crypt')
 
 const { graphqlKoa }   = require('apollo-server-koa')
 const { graphiqlKoa }  = require('apollo-server-koa')
@@ -21,8 +22,7 @@ const port   = parseInt(process.env.PORT, 10) || 3000
 const app    = next({ dev })
 const handle = app.getRequestHandler()
 
-
-/* OAUTH */
+// Discord OAuth information
 const discord_oauth = {
   client: {
     id: process.env.DISCORD_ID,
@@ -42,10 +42,11 @@ function main() {
   const server = new Koa()
   const router = new Router()
 
+  server.use(session(server))
+  server.use(Body())
+
   // Set signed cookie keys
   server.keys = process.env.KOA_KEYS.split(',')
-
-  server.use(Body())
 
   // GraphQL Endpoints
   router.post('/graphql', graphqlKoa({
@@ -67,8 +68,13 @@ function main() {
     })
   )
 
-  // OAuth routes
+  // OAuth login
   router.get('/auth', async ctx => {
+    if (!ctx.session.isNew) {
+      ctx.redirect('/')
+      return
+    }
+
     // create random state and save to cookies (httpOnly enabled by default)
     const state = crypto.randomBytes(16).toString('hex')
     ctx.cookies.set('state', state)
@@ -83,6 +89,7 @@ function main() {
     ctx.redirect(authorizationUri)
   })
 
+  // OAuth callback
   router.get('/callback', async ctx => {
     const tokenConfig = {
       code: ctx.query.code,
@@ -92,13 +99,24 @@ function main() {
     try {
       const tokenObj = await oauth2.authorizationCode.getToken(tokenConfig)
       const token = oauth2.accessToken.create(tokenObj)
-      const userData = await discord.getUserData(token)
+      const { user, guilds } = await discord.getUserData(token)
 
-      debug('Access Token:', tokenObj)
-      debug('User Data:', userData)
+      // to save to DB, discord user id + OAuth
+      const userToken = {
+        id: user.id,
+        access_token: tokenObj.access_token,
+        expires_at: token.token.expires_at,
+        refresh_token: tokenObj.refresh_token,
+      }
 
-      // save token object to cookies (should encrypt this?)
-      ctx.cookies.set('token', tokenObj)
+      // encrypt user and save data to db
+      const encryptedUser = crypt.encryptUser(userToken)
+      await db.upsertUser(encryptedUser)
+      await db.upsertGuilds(guilds)
+
+      // set session data
+      ctx.session.access_token = userToken.access_token
+      ctx.session.user_id = userToken.id
       ctx.redirect('/')
     } catch(err) {
       console.error('Access Token Error:', err.message)
@@ -106,6 +124,12 @@ function main() {
       ctx.body = 'Authentication Failed'
       ctx.redirect('/')
     }
+  })
+
+  // destroys a user session
+  router.get('/logout', async ctx => {
+    ctx.session = null
+    ctx.redirect('/')
   })
 
   // invite url
@@ -144,7 +168,6 @@ function main() {
 
   server.use(router.routes())
   server.use(router.allowedMethods())
-  server.use(session(server))
 
   // Initialize Apollo Engine
   const engine = new ApolloEngine({

@@ -7,7 +7,7 @@ test('SQL user queries work properly', async t => {
   const exampleUser = {
     id: '1234567890',
     access_token: '2bb5e651ec26c10420ab',
-    expires_in: '1234',
+    expires_at: new Date(),
     refresh_token: '0ddcbc66ea678',
   }
 

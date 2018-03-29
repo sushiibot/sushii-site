@@ -77,7 +77,7 @@ function upsertUser(user) {
   const values = [
     user.id,
     user.access_token,
-    user.expires_in,
+    user.expires_at,
     user.refresh_token,
   ]
 

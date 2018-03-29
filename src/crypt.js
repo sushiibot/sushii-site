@@ -1,4 +1,5 @@
 const crypto    = require('crypto')
+const debug     = require('debug')('crypt')
 const masterKey = process.env.CRYPT_KEY // 32 byte key length
 
 /**
@@ -75,6 +76,8 @@ function encryptUser(user) {
 
   // assign the encrypted token to the user
   user.refresh_token = encryptedToken
+
+  debug('Encrypted user:', user)
 
   return user
 }

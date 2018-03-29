@@ -110,10 +110,22 @@ function getUserData(token) {
         reject(user.statusText)
       }
 
+      // add the user id to each guild and restructure
+      const guildsWithUserId = guilds.data.map(guild => {
+        return {
+          user_id: user.data.id,
+          guild_id: guild.id,
+          is_owner: guild.owner,
+          permissions: guild.permissions,
+        }
+      })
+
       const data = {
-        guilds: guilds.data,
         user: user.data,
+        guilds: guildsWithUserId,
       }
+
+      debug('User Data:', data)
 
       resolve(data)
     } catch(err) {

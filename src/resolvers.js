@@ -1,12 +1,11 @@
 const { query }   = require('./database')
 const joinMonster = require('join-monster').default
-const dev         = process.env.NODE_ENV !== 'production'
+const debug   = require('debug')('resolvers')
 
 
 function joinMonsterQuery(resolveInfo, ctx) {
   return joinMonster(resolveInfo, ctx, sql => {
-    // Log SQL queries to console if dev
-    if (dev) console.log(sql)
+    debug(sql)
 
     return query(sql)
   }, { dialect: 'pg' })
