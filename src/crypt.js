@@ -20,13 +20,13 @@ function encrypt(text, encryptionKey = masterKey) {
     // generate output
     return Buffer.concat([salt, iv, tag, encrypted]).toString('base64')
   } catch(e) {
-    console.error(e)
+    console.error('Error encrypting string', e)
     return null
   }
 }
 
 /**
- * Decrypts a string encrypted with AES 256 GCM
+ * Decrypts an AES 256 GCM encrypted string
  * 
  * @param {string} encrypted Encrypted base64 encoded data
  */
@@ -49,15 +49,35 @@ function decrypt(encrypted, encryptionKey = masterKey) {
 
     return decrypted
   } catch (e) {
-    console.error(e)
+    console.error('Error decrypting string:', e)
     return null
   }
 }
 
 function generateKey() {
   const initializationVector = crypto.randomBytes(32)
-  return initializationVector.toString('base64')
+  return initializationVector.toString('hex')
 }
 
 
-module.exports = { encrypt, decrypt, generateKey }
+/**
+ * Encrypts a user's data
+ * 
+ * @param {object} user User Object data from Discord REST API
+ */
+function encryptUser(user) {
+  const encryptedToken = encrypt(user.refresh_token)
+
+  // check if failed, how do i even error handle in js???
+  if (!encryptedToken) {
+    return null
+  }
+
+  // assign the encrypted token to the user
+  user.refresh_token = encryptedToken
+
+  return user
+}
+
+
+module.exports = { encrypt, encryptUser, decrypt, generateKey }
