@@ -10,7 +10,7 @@ test('encryption and decryption works', t => {
   console.log('Encrypted data:', encrypted)
 
   const decrypted = decrypt(encrypted, encryptionKey)
-  console.log('Decrypted string:', encrypted)
+  console.log('Decrypted string:', decrypted)
 
   t.is(string, decrypted)
 })
