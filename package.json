@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node src/server.js",
     "build": "next build",
-    "start": "NODE_ENV=production PORT=8080 node src/server.js"
+    "start": "NODE_ENV=production PORT=8080 node src/server.js",
+    "test": "ava"
   },
   "author": "Derrick Lee",
   "license": "ISC",
@@ -60,6 +61,7 @@
     "twemoji": "^2.5.1"
   },
   "devDependencies": {
+    "ava": "^1.0.0-beta.3",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.1",
