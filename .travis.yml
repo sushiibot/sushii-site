@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "node"
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"
+before_script:
+  - psql -c 'create database travisdb;' -U postgres
+env:
+ DB_URL=postgres://postgres@localhost/travisdb
+ 
