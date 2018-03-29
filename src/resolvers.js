@@ -1,4 +1,4 @@
-const query       = require('./database')
+const { query }   = require('./database')
 const joinMonster = require('join-monster').default
 const dev         = process.env.NODE_ENV !== 'production'
 
