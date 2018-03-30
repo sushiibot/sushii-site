@@ -1,3 +1,9 @@
+.button:hover {
+  position: relative; 
+  top: -1px;
+  padding-bottom: 5px;
+}
+
 .intro-column {
   display: flex;
   align-items: center;
