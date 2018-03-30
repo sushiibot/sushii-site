@@ -40,6 +40,7 @@
     "isomorphic-unfetch": "^2.0.0",
     "join-monster": "^2.0.16",
     "join-monster-graphql-tools-adapter": "0.0.3",
+    "js-cookie": "^2.2.0",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
