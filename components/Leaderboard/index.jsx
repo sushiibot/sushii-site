@@ -138,7 +138,7 @@ class Ranks extends React.Component {
       return (
         <div>
           <div className='guild-info'>
-            { guild && <img className='guild-icon' src={ cleanDiscordImage(guild.icon) } alt={ guild.guild_name } /> }
+            { guild ? <img className='guild-icon' src={ cleanDiscordImage(guild.icon) } alt={ guild.guild_name } /> : null }
             <h1 className='title leaderboard-title'>{ pageTitle }</h1>
             <Helmet>
               <title>{ pageTitle + ' | sushii' }</title>
@@ -164,8 +164,8 @@ class Ranks extends React.Component {
                       </LazyLoad>
                     </div>
                     <div
-                      className={ !rank.user && 'tooltip is-tooltip-top' }
-                      data-tooltip={ !rank.user && 'User not cached, check again later.'}
+                      className={ !rank.user ? 'tooltip is-tooltip-top' : null}
+                      data-tooltip={ !rank.user ? 'User not cached, check again later.' : null }
                       style={{ display: 'inline' }}>
                       {rank.user ? rank.user.user_name : 'unknown'}
                       <span
