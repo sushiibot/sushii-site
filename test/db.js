@@ -4,6 +4,9 @@ const test = require('ava')
 const db   = require('../src/database')
 
 test('SQL user queries work properly', async t => {
+  // delay for 5 seconds for migrations, this is kind of a mess
+  await timeout(5000)
+
   const exampleUser = {
     id: '1234567890',
     access_token: '2bb5e651ec26c10420ab',
@@ -20,6 +23,7 @@ test('SQL user queries work properly', async t => {
 })
 
 test('SQL guild queries work properly', async t => {
+  await timeout(5000)
   const exampleGuilds = [
     {
       user_id: '1234567890',
@@ -35,3 +39,7 @@ test('SQL guild queries work properly', async t => {
   // same here
   t.deepEqual(Object.entries(exampleGuilds[0]), Object.entries(rows[0]))
 })
+
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
