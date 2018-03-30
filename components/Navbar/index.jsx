@@ -6,6 +6,7 @@ import { withRouter } from 'next/router'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import commands from '../../assets/commands'
 import NProgress from 'nprogress'
+import Cookies from 'js-cookie'
 
 import '../../styles/nprogress.scss'
 
@@ -78,9 +79,34 @@ const NavBarInvite = withRouter(({router}) => {
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { hamburgerIsActive: false }
+    this.state = {
+      hamburgerIsActive: false,
+      loggedIn: false,
+    }
 
     this.handleClick = this.handleClick.bind(this)
+    this.checkLogin = this.checkLogin.bind(this)
+  }
+
+  componentDidMount() {
+    this.checkLogin()
+  }
+
+  checkLogin() {
+    const loginInfoEncoded = Cookies.get('login_info')
+    console.log(loginInfoEncoded)
+    // no cookie set
+    if (!loginInfoEncoded) {
+      return
+    }
+    const loginInfoString = atob(loginInfoEncoded)
+    const loginInfo = JSON.parse(loginInfoString)
+    console.log(loginInfo)
+
+    if (loginInfo.logged_in) {
+      this.setState({ loggedIn: true })
+      console.log(this.state)
+    }
   }
 
   handleClick() {
@@ -144,6 +170,11 @@ class Navbar extends React.Component {
                       <span>
                         Patreon
                       </span>
+                    </a>
+                  </p>
+                  <p className="control">
+                    <a className='button is-info' href={this.state.loggedIn ? '/logout' : '/auth'}>
+                      { this.state.loggedIn ? 'Logout' : 'Login With Discord'}
                     </a>
                   </p>
                 </div>
