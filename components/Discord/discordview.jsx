@@ -201,18 +201,24 @@ class DiscordMessages extends React.Component {
     messages: PropTypes.array.isRequired,
     input: PropTypes.string,
   }
+  
+  constructor(props) {
+    super(props)
+
+    this.el = React.createRef()
+  }
 
   componentDidUpdate(prevProps) {
     // only scroll when messages update, not typing
     if (prevProps.messages.length !== this.props.messages.length) {
-      this.el.scrollTop = this.el.scrollHeight
+      this.el.current.scrollTop = this.el.current.scrollHeight
     }
   }
 
   render() {
     return (
       <DiscordViewWrapper>
-        <div className='discord-scroll' ref={ (el) => { this.el = el } }>
+        <div className='discord-scroll' ref={ this.el }>
           {
             this.props.messages.map((msg, i) => (
               <DiscordMessage key={i} msg={msg.data} username={msg.username} avatar={msg.avatar} isBot={msg.isBot} />
