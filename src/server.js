@@ -117,6 +117,22 @@ function main() {
       // set session data
       ctx.session.access_token = userToken.access_token
       ctx.session.user_id = userToken.id
+
+      // save regular cookie for client side stuff
+      const loginInfo = {
+        logged_in: true,
+        user_id: userToken.id,
+      }
+      
+      const loginInfoString = JSON.stringify(loginInfo)
+      const encodedUser = Buffer.from(loginInfoString).toString('base64')
+
+      // httpOnly false so client side can read idk how to do this
+      const cookieOptions = {
+        httpOnly: false,
+        signed: true,
+      }
+      ctx.cookies.set('login_info', encodedUser, cookieOptions)
       ctx.redirect('/')
     } catch(err) {
       console.error('Access Token Error:', err.message)
@@ -129,6 +145,7 @@ function main() {
   // destroys a user session
   router.get('/logout', async ctx => {
     ctx.session = null
+    ctx.cookies.set('login_info', null)
     ctx.redirect('/')
   })
 
