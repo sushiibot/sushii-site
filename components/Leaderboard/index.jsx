@@ -4,6 +4,7 @@ import LazyLoad from 'react-lazyload'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import Loader from '../Loader'
 
 /**
  * Zero pads a number, used for discriminators as they are
@@ -72,16 +73,6 @@ class XpProgress extends React.Component {
     )
   }
 }
-
-const Loader = () => (
-  <div className="leaderboard-spinner">
-    <div className="rect1"></div>
-    <div className="rect2"></div>
-    <div className="rect3"></div>
-    <div className="rect4"></div>
-    <div className="rect5"></div>
-  </div>
-)
 
 /**
  * Gets the colour (gold, silver, bronze) for a ranking position
