@@ -508,7 +508,7 @@ const commands = {
     {
       name: 'ban',
       desc: 'Bans one or more users.  You can specify multiple users by separating mentions or IDs with commas and no spaces.  \
-      You can also user this command to ban users who are not in the guild.',
+      You can also use this command to ban users who are not in the guild.',
       usage: '[@mention or ID](,@mention or ID) (reason)',
       permissions: 'BAN_MEMBERS',
       example: {
