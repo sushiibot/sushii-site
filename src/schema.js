@@ -35,7 +35,13 @@ joinMonsterAdapt(schema, {
       guild: {
         where: (table, { id }) => escape(`${table}.id = %L`, id)
       },
-    }
+      messageActivity: {
+        orderBy: {
+          time: 'desc',
+        },
+        limit: 50,
+      },
+    },
   },
   Stat: {
     sqlTable: 'stats',
@@ -95,6 +101,21 @@ joinMonsterAdapt(schema, {
       icon: { sqlColumn: 'icon' },
       member_count: { sqlColumn: 'member_count' },
       owner_id: { sqlColumn: 'owner_id' },
+    }
+  },
+  MessageCount: {
+    sqlTable: ({ resolution, id }) => escape(`(
+      SELECT
+        to_char(date_trunc(%L, "created"), 'YYYY-MM-DD HH24:MI') AS time,
+        count(*) AS count
+      FROM messages
+      WHERE guild = %L
+      GROUP BY 1
+    )`, resolution, id, resolution, resolution, resolution),
+    uniqueKey: 'time',
+    fields: {
+      time: { sqlColumn: 'time' },
+      count: { sqlColumn: 'count' }
     }
   }
 })

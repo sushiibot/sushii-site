@@ -144,6 +144,7 @@ function main() {
 
   // destroys a user session
   router.get('/logout', async ctx => {
+    // clear session and cookies
     ctx.session = null
     ctx.cookies.set('login_info', null)
     ctx.redirect('/')
@@ -161,6 +162,11 @@ function main() {
     ctx.respond = false
   })
 
+  router.get('/guild/:id', async ctx => {
+    const queryParams = { guild_id: ctx.params.id }
+    app.render(ctx.req, ctx.res, '/guild', queryParams)
+    ctx.respond = false
+  })
 
   // Next.js Pages
   router.get('*', async ctx => {

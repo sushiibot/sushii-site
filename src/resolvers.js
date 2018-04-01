@@ -24,6 +24,9 @@ const resolvers = {
     },
     guild(parent, args, ctx, resolveInfo) {
       return joinMonsterQuery(resolveInfo, ctx)
+    },
+    messageActivity(parent, args, ctx, resolveInfo) {
+      return joinMonsterQuery(resolveInfo, ctx)
     }
   }
 }

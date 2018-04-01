@@ -36,11 +36,17 @@ module.exports = `
     owner_id: String!
   }
 
+  type MessageCount {
+    time: String!
+    count: String!
+  }
+
   type Query {
     stats(filter: [String]): [Stat]
     ranks(guild_id: String): [Rank]
     globalRanks: [GlobalRank]
     user(id: String!): CachedUser
     guild(id: String): CachedGuild
+    messageActivity(id: String, resolution: String): [MessageCount]
   }
 `
