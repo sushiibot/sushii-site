@@ -137,7 +137,7 @@ class Navbar extends React.Component {
                 <div className='field is-grouped'>
                   <NavBarInvite />
                   <p className='control'>
-                    <a className='is-danger button' target='_blank' rel='noopener noreferrer' href='https://www.patreon.com/tzuwy'>
+                    <a className='is-danger button' target='_blank' rel='noopener noreferrer' href='https://www.patreon.com/sushiibot'>
                       <span className='icon'>
                         <FontAwesomeIcon icon={['fab', 'patreon']} />
                       </span>
