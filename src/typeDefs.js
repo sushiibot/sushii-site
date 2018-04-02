@@ -40,6 +40,22 @@ module.exports = `
     time: String!
     count: String!
   }
+  
+  type OAuthUser {
+    id: String!,
+    user: CachedUser,
+    access_token: String!,
+    expires_at: String!,
+    refresh_token: String!,
+  }
+
+  type OAuthGuild {
+    user_id: String!,
+    guild_id: String!,
+    guild: CachedGuild,
+    is_owner: Boolean!,
+    permissions: String!,
+  }
 
   type Query {
     stats(filter: [String]): [Stat]
@@ -47,6 +63,9 @@ module.exports = `
     globalRanks: [GlobalRank]
     user(id: String!): CachedUser
     guild(id: String): CachedGuild
+    OAuthUser(id: String!): OAuthUser
+    getCurrentUser: OAuthUser
+    OAuthGuilds(id: String!): [OAuthGuild]
     messageActivity(id: String, resolution: String): [MessageCount]
   }
 `

@@ -25,6 +25,19 @@ const resolvers = {
     guild(parent, args, ctx, resolveInfo) {
       return joinMonsterQuery(resolveInfo, ctx)
     },
+    user(parent, args, ctx, resolveInfo) {
+      return joinMonsterQuery(resolveInfo, ctx)
+    },
+    OAuthUser(parent, args, ctx, resolveInfo) {
+      return joinMonsterQuery(resolveInfo, ctx)
+    },
+    getCurrentUser(parent, args, ctx, resolveInfo) {
+      // console.log('resolveinfo:', JSON.stringify(resolveInfo))
+      return joinMonsterQuery(resolveInfo, { user_id: ctx.user_id })
+    },
+    OAuthGuilds(parent, args, ctx, resolveInfo) {
+      return joinMonsterQuery(resolveInfo, ctx)
+    },
     messageActivity(parent, args, ctx, resolveInfo) {
       return joinMonsterQuery(resolveInfo, ctx)
     }

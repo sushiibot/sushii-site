@@ -44,22 +44,39 @@ function main() {
 
   server.use(session(server))
   server.use(Body())
+  server.use(async (ctx, next) => {
+    // check if guild page
+    if (ctx.url.startsWith('/guild')) {
+      // check if logged in
+      if (!ctx.session.user_id) {
+        ctx.redirect('/auth')
+      }
+    }
+
+    await next()
+  })
 
   // Set signed cookie keys
   server.keys = process.env.KOA_KEYS.split(',')
 
   // GraphQL Endpoints
-  router.post('/graphql', graphqlKoa({
+  router.post('/graphql', graphqlKoa(ctx => ({
     schema: schema,
+    context: {
+      user_id: ctx.session ? ctx.session.user_id : null,
+    },
     tracing: true,
     cacheControl: true,
-  }))
+  })))
 
-  router.get('/graphql', graphqlKoa({
+  router.get('/graphql', graphqlKoa(ctx => ({
     schema: schema,
+    context: {
+      user_id: ctx.session ? ctx.session.user_id : null,
+    },
     tracing: true,
     cacheControl: true,
-  }))
+  })))
 
   router.get(
     '/graphiql',

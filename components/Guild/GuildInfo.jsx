@@ -44,7 +44,7 @@ class Guild extends React.Component {
 
       const chartData = {
         datasets: [{
-          label: 'Activity',
+          label: 'Messages',
           data: data,
           backgroundColor: grd,
           borderColor: '#49baff',

@@ -691,7 +691,6 @@ const commands = {
     {
       name: 'roles get',
       desc: 'Gets the role configuration.',
-
       permissions: 'MANAGE_GUILD'
     },
     {

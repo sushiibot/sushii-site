@@ -32,8 +32,35 @@ joinMonsterAdapt(schema, {
         },
         limit: 50,
       },
+      user: {
+        where: (table, { id }, ctx) => {
+          console.log(ctx)
+          return escape(`${table}.id = %L`, id)
+        }
+      },
       guild: {
         where: (table, { id }) => escape(`${table}.id = %L`, id)
+      },
+      OAuthUser: {
+        where: (table, { id }, ctx) => {
+          console.log(JSON.stringify(ctx))
+
+          return escape(`${table}.id = %L`, id)
+        },
+      },
+      getCurrentUser: {
+        where: (table, args, ctx) => {
+          console.log(JSON.stringify(ctx))
+
+          return escape(`${table}.id = %L`, ctx.user_id)
+        },
+      },
+      OAuthGuilds: {
+        where: (table, { id }, ctx) => {
+          console.log(ctx)
+
+          return escape(`${table}.user_id = %L`, id)
+        },
       },
       messageActivity: {
         orderBy: {
@@ -101,6 +128,32 @@ joinMonsterAdapt(schema, {
       icon: { sqlColumn: 'icon' },
       member_count: { sqlColumn: 'member_count' },
       owner_id: { sqlColumn: 'owner_id' },
+    }
+  },
+  OAuthUser: {
+    sqlTable: 'oauth_users',
+    uniqueKey: 'id',
+    fields: {
+      id: { sqlColumn: 'id' },
+      user: { 
+        sqlJoin: (OAuthUserTable, userTable) => `CAST (${OAuthUserTable}.id AS INT8) = ${userTable}.id`,
+      },
+      access_token: { sqlColumn: 'access_token' },
+      expires_at: { sqlColumn: 'expires_at' },
+      refresh_token: { sqlColumn: 'refresh_token' },
+    }
+  },
+  OAuthGuild: {
+    sqlTable: 'oauth_guilds',
+    uniqueKey: ['user_id', 'guild_id'],
+    fields: {
+      user_id: { sqlColumn: 'user_id' },
+      guild_id: { sqlColumn: 'guild_id' },
+      guild: {
+        sqlJoin: (OAuthGuildTable, guildTable) => `CAST (${OAuthGuildTable}.guild_id AS INT8) = ${guildTable}.id`,
+      },
+      is_owner: { sqlColumn: 'is_owner' },
+      permissions: { sqlColumn: 'permissions' },
     }
   },
   MessageCount: {
