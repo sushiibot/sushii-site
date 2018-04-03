@@ -6,8 +6,6 @@ import Layout from '../layouts/'
 import withData from '../lib/withData'
 import GuildInfo from '../components/Guild/GuildInfo'
 import GuildPicker from '../components/Guild/GuildPicker'
-import redirect from '../lib/redirect'
-
 
 // Shows a Guild chooser thing if there isn't a guild ID in url path
 class GuildPage extends React.Component {
