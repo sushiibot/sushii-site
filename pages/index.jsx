@@ -24,11 +24,11 @@ export default withData(() => (
                   <h4 className='subtitle is-4'>
                     A multi-purpose bot for <a href='https://discordapp.com' target='_blank' rel='noopener noreferrer'>Discord</a>.
                   </h4>
-                  <a className='button is-link' target='_blank' rel='noopener noreferrer' href='/invite'>
+                  <a className='button is-link' target='_blank' rel='noopener noreferrer' href='/invite' style={{ marginRight: '10px', marginTop: '5px' }}>
                     Add to Discord
                   </a>
                   <Link href='/commands'>
-                    <a className='button' style={{ marginLeft: '10px' }}>View Commands</a>
+                    <a className='button' style={{ marginTop: '5px' }}>View Commands</a>
                   </Link>
                 </div>
               </div>
