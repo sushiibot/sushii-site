@@ -554,6 +554,20 @@ const commands = {
       }
     },
     {
+      name: 'unmute',
+      desc: 'Unmutes a member.',
+      usage: '[@mention or ID] (reason)',
+      permissions: 'BAN_MEMBERS',
+      example: {
+        command: {
+          content: '-unmute @adrian sorry'
+        },
+        response: {
+          content: 'Muted member adrian#0515 (138024618928635905) for `sorry`',
+        }
+      }
+    },
+    {
       name: 'prune',
       desc: 'Bulk deletes messages. Message count given excludes the message used to invoke this command.',
       usage: '[# of messages]',
