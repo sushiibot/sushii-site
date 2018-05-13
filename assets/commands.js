@@ -171,6 +171,25 @@ const commands = {
       desc: 'Shows your last 10 loved tracks.',
     },
     {
+      name: 'vlive channel',
+      aliases: ['vlive search', 'v channel', 'v search'],
+      desc: 'Displays the last video for a VLive channel.',
+    },
+    {
+      name: 'vlive video',
+      aliases: ['v video'],
+      desc: 'Gets information and direct video / subtitle links for a VLive video.',
+    },
+    {
+      name: 'vlivenotif add',
+      desc: 'Adds a notification for a VLive channel with optional role to mention for new videos.',
+      usage: '[VLive channel] [Discord #channel or ID] (role name)'
+    },
+    {
+      name: 'vlivenotif list',
+      desc: 'Lists VLive notifications for the guild.',
+    },
+    {
       name: 'urban',
       desc: 'Looks up a definition on Urban Dictionary.',
       aliases: ['ud'],
