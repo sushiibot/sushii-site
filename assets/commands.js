@@ -705,6 +705,29 @@ const commands = {
       permissions: 'MANAGE_GUILD'
     },
   ],
+  Sushiiboard: [
+    {
+      name: 'sushiiboard channel',
+      aliases: ['sushiboard channel', 'starboard channel'],
+      desc: 'Sets the sushiiboard channel.',
+      usage: '[#channel or ID]',
+      permissions: 'MANAGE_GUILD',
+    },
+    {
+      name: 'sushiiboard number',
+      aliases: ['sushiboard number', 'starboard number'],
+      desc: 'Sets the sushiiboard minimum reaction number. Default is 2.',
+      usage: '[number]',
+      permissions: 'MANAGE_GUILD',
+    },
+    {
+      name: 'sushiiboard emoji',
+      aliases: ['sushiboard emoji', 'starboard emoji'],
+      desc: 'Sets the sushiiboard emoji. This can be a custom emoji.',
+      usage: '[emoji]',
+      permissions: 'MANAGE_GUILD',
+    },
+  ],
   Gallery: [
     {
       name: 'gallery list',
