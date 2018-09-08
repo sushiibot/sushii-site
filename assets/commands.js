@@ -174,20 +174,30 @@ const commands = {
       name: 'vlive channel',
       aliases: ['vlive search', 'v channel', 'v search'],
       desc: 'Displays the last video for a VLive channel.',
+      usage: '[VLive channel]'
     },
     {
       name: 'vlive video',
       aliases: ['v video'],
       desc: 'Gets information and direct video / subtitle links for a VLive video.',
+      usage: '[VLive video URL]'
     },
     {
       name: 'vlivenotif add',
+      permissions: 'MANAGE_GUILD',
       desc: 'Adds a notification for a VLive channel with optional role to mention for new videos.',
       usage: '[VLive channel] [Discord #channel or ID] (role name)'
     },
     {
       name: 'vlivenotif list',
+      permissions: 'MANAGE_GUILD',
       desc: 'Lists VLive notifications for the guild.',
+    },
+    {
+      name: 'vlivenotif delete',
+      permissions: 'MANAGE_GUILD',
+      desc: 'Deletes a VLive notification.',
+      usage: '[VLive channel] [Discord #channel or ID]'
     },
     {
       name: 'urban',
