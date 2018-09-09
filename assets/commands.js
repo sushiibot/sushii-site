@@ -58,7 +58,9 @@ const commands = {
     {
       name: 'notification add',
       desc: 'Adds a keyword notification.  \
-      Sushii will DM you when this keyword is mentioned in chat.',
+      Sushii will DM you when this keyword is mentioned in chat. \
+      This only includes messages from servers you share with sushii \
+      and channels you can view.',
       usage: '(global) [keyword]',
     },
     {
@@ -431,10 +433,6 @@ const commands = {
     {
       name: 'ping',
       desc: 'Tests the bots ping.  This is not your ping.',
-    },
-    {
-      name: 'latency',
-      desc: 'Calculates the heartbeat latency between the shard and the gateway.',
     },
     {
       name: 'events',
