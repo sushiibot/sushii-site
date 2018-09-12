@@ -11,7 +11,7 @@ const DocsPage = () => (
         Help
       </h1>
       <div className='columns'>
-        <div className='column is-one-quarter'>
+        <div className='column is-2'>
           <HelpMenu />
         </div>
         <div className='column'>
@@ -25,7 +25,7 @@ const DocsPage = () => (
             <div className='content'>
               <h1>Ranking</h1>
               <p>
-                Ranks are split into 4 categories, daily, weekly, monthly, and all time. When you send a message, you gain 1 XP.
+                Ranks are split into 4 categories, daily, weekly, monthly, and all time. When you send a message, you gain 5 XP.
                 This is limited to at least one minute between each message to prevent spamming.
                 Your ranking is calculated by <code>ROW_NUMBER()</code> over each category in which users have sent messages in.
               </p>
