@@ -11,7 +11,7 @@ const imagesToPreload = [
 const users = {
   invoker: {
     username: 'Joshy',
-    avatar: 'https://cdn.discordapp.com/avatars/170366273354596352/a_141c9dbcafcfa98a2d2d4ad310c322a9.jpg',
+    avatar: '/static/josh.jpg',
     isBot: false,
   },
   bot: {
