@@ -14,7 +14,7 @@ const PatronPage = () => (
           </h1>
           <p style={{ margin: '20px 0 40px' }}>
             Want to be on this list?
-            Support me on <a href='https://www.patreon.com/tzuwy' target='_blank' rel='noopener noreferrer'>Patreon</a>!
+            Support me on <a href='https://www.patreon.com/sushiibot' target='_blank' rel='noopener noreferrer'>Patreon</a>!
             <br />
             The funds will go towards hosting and improvements.
           </p>
