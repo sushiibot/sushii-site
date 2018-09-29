@@ -1,0 +1,14 @@
+{
+    "categoryName": {
+        "limit": 1,
+        "roles": {
+            "roleName": {
+                "primary": 1234,
+                "secondary": 1235,
+                "searches": [
+                    "word / name to search"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+{
+  "bias": {
+    "limit": 3,
+    "roles": {
+      "Jennie": {
+        "primary": 187473364187611137,
+        "secondary": 219942256474325002,
+        "searches": [
+          "jennie",
+          "jendeukie"
+        ]
+      },
+      "Jisoo": {
+        "primary": 192458011665498112,
+        "secondary": 219942349508182026,
+        "searches": [
+          "jisoo",
+          "chichu"
+        ]
+      },
+      "Lisa": {
+        "primary": 189915363373219840,
+        "secondary": 219942309687590913,
+        "searches": [
+          "lisa"
+        ]
+      },
+      "OT4": {
+        "primary": 202178656066338817,
+        "secondary": 0,
+        "searches": [
+          "ot4",
+          "all"
+        ]
+      },
+      "Rosé": {
+        "primary": 195032853493448704,
+        "secondary": 220679982622441473,
+        "searches": [
+          "rose",
+          "rosé"
+        ]
+      }
+    }
+  },
+  "extras": {
+    "limit": 0,
+    "roles": {
+      "BLINK": {
+        "primary": 320656786631950339,
+        "secondary": 0,
+        "searches": [
+          "blink"
+        ]
+      },
+      "vlive": {
+        "primary": 442928635075100693,
+        "secondary": 0,
+        "searches": [
+          "vlive"
+        ]
+      }
+    }
+  }
+}

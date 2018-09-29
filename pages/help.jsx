@@ -2,6 +2,8 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Layout from '../layouts/'
 import HelpMenu from '../components/HelpMenu'
+import roleFormat from '../assets/roleFormat.json'
+import RolesExample from '../assets/blackpink.json'
 
 const DocsPage = () => (
   <Layout>
@@ -57,6 +59,44 @@ const DocsPage = () => (
               <blockquote className='blockquote'>
                 <b>Example:</b> If you have sent messages across a total of 200 minutes between 2:00-3:00, your graph will display 200 at that point in time.
               </blockquote>
+            </div>
+            <h3 className='title is-4 is-spaced bd-anchor-title' id='roles'>
+              Roles
+              <a className='bd-anchor-link' href='#roles'>
+                #
+              </a>
+            </h3>
+            <div className='content'>
+              <p>
+                Self role assignments can be configured with the following format.
+                You can use <a href="https://jsonlint.com/" target="_blank" rel="noopener noreferrer">JSONLint </a>
+                to check if your configuration is correct.  Sushii should also respond with errors if your configuration
+                is incorrect.
+              </p>
+              <pre>
+                <code>
+                  {JSON.stringify(roleFormat, null, 2, 2)}
+                </code>
+              </pre>
+              <p>
+                An example is given below.
+                The following configuration allows for 2 different categories.
+                Bias will allow for a maximum of 3 roles from the category and
+                the first role chosen will be the primary ID while following ones
+                will be secondary IDs. You can use primary / secondary roles to
+                allow for multiple role assignment while keeping a primary one
+                in front of others depending on role hierarchy. The extras category
+                has no limit on assignments along with no secondary roles IDs.
+              </p>
+              <pre>
+                <code>
+                  {JSON.stringify(RolesExample, null, 2, 2)}
+                </code>
+              </pre>
+              <p>
+                If you need additional help with the configuration, you can join the
+                <a href="https://discord.gg/QCXjyrs" target="_blank" rel="noopener noreferrer"> sushii support Discord server</a>.
+              </p>
             </div>
           </section>
         </div>
