@@ -96,6 +96,7 @@ const DocsPage = () => (
               <p>
                 If you need additional help with the configuration, you can join the
                 <a href="https://discord.gg/QCXjyrs" target="_blank" rel="noopener noreferrer"> sushii support Discord server</a>.
+                As role configuration isn&#39;t the easiest as of now, it may be changed to be more ergonomic later.
               </p>
             </div>
           </section>
