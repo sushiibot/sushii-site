@@ -702,6 +702,12 @@ const commands = {
       desc: 'Lists the current settings for this guild.',
       permissions: 'MANAGE_GUILD'
     },
+    {
+      name: 'clearsetting',
+      desc: 'Clears a setting for the guild.  You can use most of the commands above as setting names',
+      usage: '[setting name]',
+      permissions: 'MANAGE_GUILD'
+    }
   ],
   Sushiiboard: [
     {
